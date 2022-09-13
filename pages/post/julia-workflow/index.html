@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <title>My Julia workflow</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="Hugo 0.69.2" />
+    <link rel="stylesheet" type="text/css" href="../../css/style.css">
+    <link rel="stylesheet" type="text/css" href="../../css/syntax.css">
+    
+    <link href="https://fonts.googleapis.com/css?family=Noto+Serif:400,400i,700,700i|Ubuntu+Mono&display=swap&subset=latin-ext" rel="stylesheet"> 
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          
+          
+          processEscapes: true,
+          processEnvironments: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+          TeX: { equationNumbers: { autoNumber: "AMS" },
+          extensions: ["AMSmath.js", "AMSsymbols.js"] }
+          },
+        CommonHTML: { linebreaks: { automatic: true } },
+        "HTML-CSS": { linebreaks: { automatic: true } },
+        SVG: { linebreaks: { automatic: true } }
+      });
+    </script>
+    <script type="text/javascript" async
+            src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
+    </script>
+  </head>
+  <body>
+    <nav id="navbar">
+      <a href="https://tamaspapp.eu/">About</a>
+<a href="https://tamaspapp.eu/research">Research</a>
+<a href="https://tamaspapp.eu/teaching">Teaching</a>
+<a href="https://tamaspapp.eu/post">Blog</a>
+<a href="https://github.com/tpapp/">Github</a>
+<div class="dropdown">
+  <a class="dropdown-button">(tags)</a>
+  <div class="dropdown-content">
+    <p class="dropdown-header">site tags</p>
+    
+    <a href="../../tags/automatic-differentiation">automatic-differentiation</a>
+    
+    <a href="../../tags/bayesian">bayesian</a>
+    
+    <a href="../../tags/big-data">big-data</a>
+    
+    <a href="../../tags/blogging">blogging</a>
+    
+    <a href="../../tags/browser-plugins">browser-plugins</a>
+    
+    <a href="../../tags/coverage">coverage</a>
+    
+    <a href="../../tags/docker">docker</a>
+    
+    <a href="../../tags/emacs">emacs</a>
+    
+    <a href="../../tags/emacs25">emacs25</a>
+    
+    <a href="../../tags/firefox">firefox</a>
+    
+    <a href="../../tags/forwarddiff">forwarddiff</a>
+    
+    <a href="../../tags/gitlab">gitlab</a>
+    
+    <a href="../../tags/hugo">hugo</a>
+    
+    <a href="../../tags/indirect-inference">indirect-inference</a>
+    
+    <a href="../../tags/jacobian">jacobian</a>
+    
+    <a href="../../tags/julia">julia</a>
+    
+    <a href="../../tags/julia-repl">julia-repl</a>
+    
+    <a href="../../tags/latex">latex</a>
+    
+    <a href="../../tags/lisp">lisp</a>
+    
+    <a href="../../tags/log1p">log1p</a>
+    
+    <a href="../../tags/magit">magit</a>
+    
+    <a href="../../tags/math">math</a>
+    
+    <a href="../../tags/mcmc">mcmc</a>
+    
+    <a href="../../tags/microoptimization">microoptimization</a>
+    
+    <a href="../../tags/numerical-error">numerical-error</a>
+    
+    <a href="../../tags/packages">packages</a>
+    
+    <a href="../../tags/plots">plots</a>
+    
+    <a href="../../tags/stan">stan</a>
+    
+    <a href="../../tags/teaching">teaching</a>
+    
+    <a href="../../tags/ubuntu">ubuntu</a>
+    
+    <a href="../../tags/unit-testing">unit-testing</a>
+    
+    <a href="../../tags/weave">weave</a>
+    
+  </div>
+</div>
+<a href="https://tamaspapp.eu/post/index.xml" type="application/rss+xml" target="_blank"><img class="feedicon" src="https://tamaspapp.eu/img/feed-icon.svg" alt="Atom feed (blog)" title="Atom feed (blog)"></a>
+
+    </nav>
+    <div id="navbarplaceholder">
+      <a href="https://tamaspapp.eu/">About</a>
+<a href="https://tamaspapp.eu/research">Research</a>
+<a href="https://tamaspapp.eu/teaching">Teaching</a>
+<a href="https://tamaspapp.eu/post">Blog</a>
+<a href="https://github.com/tpapp/">Github</a>
+<div class="dropdown">
+  <a class="dropdown-button">(tags)</a>
+  <div class="dropdown-content">
+    <p class="dropdown-header">site tags</p>
+    
+    <a href="../../tags/automatic-differentiation">automatic-differentiation</a>
+    
+    <a href="../../tags/bayesian">bayesian</a>
+    
+    <a href="../../tags/big-data">big-data</a>
+    
+    <a href="../../tags/blogging">blogging</a>
+    
+    <a href="../../tags/browser-plugins">browser-plugins</a>
+    
+    <a href="../../tags/coverage">coverage</a>
+    
+    <a href="../../tags/docker">docker</a>
+    
+    <a href="../../tags/emacs">emacs</a>
+    
+    <a href="../../tags/emacs25">emacs25</a>
+    
+    <a href="../../tags/firefox">firefox</a>
+    
+    <a href="../../tags/forwarddiff">forwarddiff</a>
+    
+    <a href="../../tags/gitlab">gitlab</a>
+    
+    <a href="../../tags/hugo">hugo</a>
+    
+    <a href="../../tags/indirect-inference">indirect-inference</a>
+    
+    <a href="../../tags/jacobian">jacobian</a>
+    
+    <a href="../../tags/julia">julia</a>
+    
+    <a href="../../tags/julia-repl">julia-repl</a>
+    
+    <a href="../../tags/latex">latex</a>
+    
+    <a href="../../tags/lisp">lisp</a>
+    
+    <a href="../../tags/log1p">log1p</a>
+    
+    <a href="../../tags/magit">magit</a>
+    
+    <a href="../../tags/math">math</a>
+    
+    <a href="../../tags/mcmc">mcmc</a>
+    
+    <a href="../../tags/microoptimization">microoptimization</a>
+    
+    <a href="../../tags/numerical-error">numerical-error</a>
+    
+    <a href="../../tags/packages">packages</a>
+    
+    <a href="../../tags/plots">plots</a>
+    
+    <a href="../../tags/stan">stan</a>
+    
+    <a href="../../tags/teaching">teaching</a>
+    
+    <a href="../../tags/ubuntu">ubuntu</a>
+    
+    <a href="../../tags/unit-testing">unit-testing</a>
+    
+    <a href="../../tags/weave">weave</a>
+    
+  </div>
+</div>
+<a href="https://tamaspapp.eu/post/index.xml" type="application/rss+xml" target="_blank"><img class="feedicon" src="https://tamaspapp.eu/img/feed-icon.svg" alt="Atom feed (blog)" title="Atom feed (blog)"></a>
+
+    </div>
+    <div id="mainbody">
+
+<div id="content">
+<h1>My Julia workflow</h1>2017/10/21
+<span class="tags">
+    
+    <a href="../../tags/julia">julia</a>
+    
+    <a href="../../tags/emacs">emacs</a>
+    
+</span>
+
+
+
+
+<div id="pagenav">
+  
+  <span class="pagenav-label">previous post:</span>&nbsp;
+  <a href="https://tamaspapp.eu/post/htmlize-screenshot/">HTML &#34;screenshots&#34; from Emacs</a>
+  
+  
+  
+  <br/>
+  
+  <span class="pagenav-label">next post:</span>&nbsp;
+  <a href="https://tamaspapp.eu/post/large-ragged-dataset-julia/">Working with a large ragged dataset in Julia</a>
+  
+</div>
+
+
+<p>(<strong>edit</strong> 2017-10-22: fixed path for <code>PkgDev.generate</code> example)</p>
+
+<p>This is a summary of the workflow I find ideal for working with Julia. Although the manual has a <a href="https://docs.julialang.org/en/latest/manual/workflow-tips/">section on workflow</a>, it does not mention all the tools that I find useful, so perhaps this will benefit some users of Julia.</p>
+
+<p>I use Emacs, with <a href="https://github.com/JuliaEditorSupport/julia-emacs"><code>julia-mode</code></a> (for editing the source) and <a href="https://github.com/tpapp/julia-repl"><code>julia-repl</code></a> (REPL integration). The latter is my own package; you can use <a href="https://ess.r-project.org/"><code>ESS</code></a> instead, which has some advantages (eg multiple inferior processes) and disadvantages (no ANSI terminal support). The choice of an editor is highly subjective: at the end of the day, all you need is one that is capable of sending code to the REPL and can, in turn, be used by the REPL to open a file at a particular point. I use</p>
+<div class="highlight"><pre class="chroma"><code class="language-julia" data-lang="julia"><span class="nb">ENV</span><span class="p">[</span><span class="s">&#34;EDITOR&#34;</span><span class="p">]</span> <span class="o">=</span> <span class="s">&#34;emacsclient&#34;</span></code></pre></div>
+<p>in <code>~/.juliarc.jl</code> to ensure this. This helps me find code with the <code>@edit</code> macro.</p>
+
+<p>Small code snippets and experiments below ~30 lines just go into files, from which I send regions of code to the REPL. Frequently, for throwaway code, I just open a file in <code>/tmp/</code>, which will get removed automatically after the next reboot.</p>
+
+<p>Even very small projects get their own <a href="https://docs.julialang.org/en/latest/manual/packages/">package</a>. This way I get version control<sup class="footnote-ref" id="fnref:I-use-the-amazin"><a class="footnote" href="#fn:I-use-the-amazin">1</a></sup> and a sensible structure for unit tests set up automatically. I put my own packages in their own directory, <em>keeping them separate from <code>Pkg.dir()</code></em>. This allows me to use the same package across Julia versions, and makes <code>Pkg.update()</code> ignore them. I tell Julia where they are with</p>
+<div class="highlight"><pre class="chroma"><code class="language-julia" data-lang="julia"><span class="kd">const</span> <span class="n">LOCAL_PACKAGES</span> <span class="o">=</span> <span class="n">expanduser</span><span class="p">(</span><span class="s">&#34;~/src/julia-local-packages/&#34;</span><span class="p">)</span>
+<span class="n">push!</span><span class="p">(</span><span class="nb">LOAD_PATH</span><span class="p">,</span> <span class="n">LOCAL_PACKAGES</span><span class="p">)</span></code></pre></div>
+<p>I create local packages with</p>
+<div class="highlight"><pre class="chroma"><code class="language-julia" data-lang="julia"><span class="k">import</span> <span class="n">PkgDev</span>
+<span class="n">PkgDev</span><span class="o">.</span><span class="n">generate</span><span class="p">(</span><span class="s">&#34;MyPkg&#34;</span><span class="p">,</span> <span class="s">&#34;MIT&#34;</span><span class="p">;</span> <span class="n">path</span> <span class="o">=</span> <span class="n">LOCAL_PACKAGES</span><span class="p">)</span></code></pre></div>
+<p>Then I open the file and start working on it with</p>
+<div class="highlight"><pre class="chroma"><code class="language-julia" data-lang="julia"><span class="k">using</span> <span class="n">MyPkg</span></code></pre></div>
+<p>I use <a href="https://github.com/timholy/Revise.jl"><code>Revise.jl</code></a> to automate reloading.<sup class="footnote-ref" id="fnref:You-just-need-to"><a class="footnote" href="#fn:You-just-need-to">2</a></sup> This package has changed my workflow completely; it can cope with most changes, except for type redefinitions. For these, I need to restart the REPL.</p>
+
+<p>To test my code, I use <code>Pkg.test</code> with <a href="https://github.com/tpapp/RoguePkg.jl"><code>RoguePkg.jl</code></a>, which makes it find packages outside <code>Pkg.dir()</code> for testing and benchmarks:</p>
+<div class="highlight"><pre class="chroma"><code class="language-julia" data-lang="julia"><span class="n">Pkg</span><span class="o">.</span><span class="n">test</span><span class="p">(</span><span class="n">pkg_for</span><span class="s">&#34;MyPkg&#34;</span><span class="p">)</span></code></pre></div><div class="footnotes">
+
+<hr>
+
+<ol>
+<li id="fn:I-use-the-amazin">I use the amazing <a href="https://magit.vc/"><code>magit</code></a> for interacting with <code>git</code> &mdash; having obtained <a href="https://www.kickstarter.com/projects/1681258897/its-magit-the-magical-git-client">funding on KickStarter</a> recently, it is bound to become even more convenient. <a class="footnote-return" href="#fnref:I-use-the-amazin"><sup>[return]</sup></a></li>
+<li id="fn:You-just-need-to">You just need to set it up once according to its documentation, after that it is automatic. <a class="footnote-return" href="#fnref:You-just-need-to"><sup>[return]</sup></a></li>
+</ol>
+</div>
+
+
+</div>
+
+<script src="https://utteranc.es/client.js"
+        repo="tpapp/tpapp.github.io"
+        issue-term="pathname"
+        label="comment"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>
+
+    </div>
+    <div id="smallscreenwarning">
+      site not optimized for small screens, math may break
+    </div>
+  </body>
+</html>
+

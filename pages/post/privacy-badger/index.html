@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <title>Disabling Privacy Badger</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="Hugo 0.69.2" />
+    <link rel="stylesheet" type="text/css" href="../../css/style.css">
+    <link rel="stylesheet" type="text/css" href="../../css/syntax.css">
+    
+    <link href="https://fonts.googleapis.com/css?family=Noto+Serif:400,400i,700,700i|Ubuntu+Mono&display=swap&subset=latin-ext" rel="stylesheet"> 
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          
+          
+          processEscapes: true,
+          processEnvironments: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+          TeX: { equationNumbers: { autoNumber: "AMS" },
+          extensions: ["AMSmath.js", "AMSsymbols.js"] }
+          },
+        CommonHTML: { linebreaks: { automatic: true } },
+        "HTML-CSS": { linebreaks: { automatic: true } },
+        SVG: { linebreaks: { automatic: true } }
+      });
+    </script>
+    <script type="text/javascript" async
+            src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
+    </script>
+  </head>
+  <body>
+    <nav id="navbar">
+      <a href="https://tamaspapp.eu/">About</a>
+<a href="https://tamaspapp.eu/research">Research</a>
+<a href="https://tamaspapp.eu/teaching">Teaching</a>
+<a href="https://tamaspapp.eu/post">Blog</a>
+<a href="https://github.com/tpapp/">Github</a>
+<div class="dropdown">
+  <a class="dropdown-button">(tags)</a>
+  <div class="dropdown-content">
+    <p class="dropdown-header">site tags</p>
+    
+    <a href="../../tags/automatic-differentiation">automatic-differentiation</a>
+    
+    <a href="../../tags/bayesian">bayesian</a>
+    
+    <a href="../../tags/big-data">big-data</a>
+    
+    <a href="../../tags/blogging">blogging</a>
+    
+    <a href="../../tags/browser-plugins">browser-plugins</a>
+    
+    <a href="../../tags/coverage">coverage</a>
+    
+    <a href="../../tags/docker">docker</a>
+    
+    <a href="../../tags/emacs">emacs</a>
+    
+    <a href="../../tags/emacs25">emacs25</a>
+    
+    <a href="../../tags/firefox">firefox</a>
+    
+    <a href="../../tags/forwarddiff">forwarddiff</a>
+    
+    <a href="../../tags/gitlab">gitlab</a>
+    
+    <a href="../../tags/hugo">hugo</a>
+    
+    <a href="../../tags/indirect-inference">indirect-inference</a>
+    
+    <a href="../../tags/jacobian">jacobian</a>
+    
+    <a href="../../tags/julia">julia</a>
+    
+    <a href="../../tags/julia-repl">julia-repl</a>
+    
+    <a href="../../tags/latex">latex</a>
+    
+    <a href="../../tags/lisp">lisp</a>
+    
+    <a href="../../tags/log1p">log1p</a>
+    
+    <a href="../../tags/magit">magit</a>
+    
+    <a href="../../tags/math">math</a>
+    
+    <a href="../../tags/mcmc">mcmc</a>
+    
+    <a href="../../tags/microoptimization">microoptimization</a>
+    
+    <a href="../../tags/numerical-error">numerical-error</a>
+    
+    <a href="../../tags/packages">packages</a>
+    
+    <a href="../../tags/plots">plots</a>
+    
+    <a href="../../tags/stan">stan</a>
+    
+    <a href="../../tags/teaching">teaching</a>
+    
+    <a href="../../tags/ubuntu">ubuntu</a>
+    
+    <a href="../../tags/unit-testing">unit-testing</a>
+    
+    <a href="../../tags/weave">weave</a>
+    
+  </div>
+</div>
+<a href="https://tamaspapp.eu/post/index.xml" type="application/rss+xml" target="_blank"><img class="feedicon" src="https://tamaspapp.eu/img/feed-icon.svg" alt="Atom feed (blog)" title="Atom feed (blog)"></a>
+
+    </nav>
+    <div id="navbarplaceholder">
+      <a href="https://tamaspapp.eu/">About</a>
+<a href="https://tamaspapp.eu/research">Research</a>
+<a href="https://tamaspapp.eu/teaching">Teaching</a>
+<a href="https://tamaspapp.eu/post">Blog</a>
+<a href="https://github.com/tpapp/">Github</a>
+<div class="dropdown">
+  <a class="dropdown-button">(tags)</a>
+  <div class="dropdown-content">
+    <p class="dropdown-header">site tags</p>
+    
+    <a href="../../tags/automatic-differentiation">automatic-differentiation</a>
+    
+    <a href="../../tags/bayesian">bayesian</a>
+    
+    <a href="../../tags/big-data">big-data</a>
+    
+    <a href="../../tags/blogging">blogging</a>
+    
+    <a href="../../tags/browser-plugins">browser-plugins</a>
+    
+    <a href="../../tags/coverage">coverage</a>
+    
+    <a href="../../tags/docker">docker</a>
+    
+    <a href="../../tags/emacs">emacs</a>
+    
+    <a href="../../tags/emacs25">emacs25</a>
+    
+    <a href="../../tags/firefox">firefox</a>
+    
+    <a href="../../tags/forwarddiff">forwarddiff</a>
+    
+    <a href="../../tags/gitlab">gitlab</a>
+    
+    <a href="../../tags/hugo">hugo</a>
+    
+    <a href="../../tags/indirect-inference">indirect-inference</a>
+    
+    <a href="../../tags/jacobian">jacobian</a>
+    
+    <a href="../../tags/julia">julia</a>
+    
+    <a href="../../tags/julia-repl">julia-repl</a>
+    
+    <a href="../../tags/latex">latex</a>
+    
+    <a href="../../tags/lisp">lisp</a>
+    
+    <a href="../../tags/log1p">log1p</a>
+    
+    <a href="../../tags/magit">magit</a>
+    
+    <a href="../../tags/math">math</a>
+    
+    <a href="../../tags/mcmc">mcmc</a>
+    
+    <a href="../../tags/microoptimization">microoptimization</a>
+    
+    <a href="../../tags/numerical-error">numerical-error</a>
+    
+    <a href="../../tags/packages">packages</a>
+    
+    <a href="../../tags/plots">plots</a>
+    
+    <a href="../../tags/stan">stan</a>
+    
+    <a href="../../tags/teaching">teaching</a>
+    
+    <a href="../../tags/ubuntu">ubuntu</a>
+    
+    <a href="../../tags/unit-testing">unit-testing</a>
+    
+    <a href="../../tags/weave">weave</a>
+    
+  </div>
+</div>
+<a href="https://tamaspapp.eu/post/index.xml" type="application/rss+xml" target="_blank"><img class="feedicon" src="https://tamaspapp.eu/img/feed-icon.svg" alt="Atom feed (blog)" title="Atom feed (blog)"></a>
+
+    </div>
+    <div id="mainbody">
+
+<div id="content">
+<h1>Disabling Privacy Badger</h1>2017/05/02
+<span class="tags">
+    
+    <a href="../../tags/firefox">firefox</a>
+    
+    <a href="../../tags/browser-plugins">browser plugins</a>
+    
+</span>
+
+
+
+
+<div id="pagenav">
+  
+  <span class="pagenav-label">previous post:</span>&nbsp;
+  <a href="https://tamaspapp.eu/post/blogging-weave-julia-hugo/">Blogging with Hugo, Julia, Weave.jl</a>
+  
+  
+  
+  <br/>
+  
+  <span class="pagenav-label">next post:</span>&nbsp;
+  <a href="https://tamaspapp.eu/post/jacobian-chain/">Two tricks for change of variables in MCMC</a>
+  
+</div>
+
+
+<p>Firefox has been my primary browser for the last decade. I find it very fast and convenient, and use quite a few addons, including <a href="https://addons.mozilla.org/en-gb/firefox/addon/google-scholar-button/">Google Scholar Button</a>, <a href="https://addons.mozilla.org/en-gb/firefox/addon/noscript/?src=search">NoScript</a>,  and <a href="https://addons.mozilla.org/en-US/firefox/addon/ublock-origin/">uBlock Origin</a>.</p>
+<p>I can&rsquo;t recall exactly when, but about half a year ago various sites started to break. I have not bothered to debug what&rsquo;s happening, suspecting it was was a combination of various plugins, but continued to use Firefox and installed <a href="https://github.com/darktrojan/openwith">openwith</a> to open broken pages in Chromium (yes, I know, the ultimate kludge). More sites became broken, and I found that now I am spending 99% of my time in Chromium, which I don&rsquo;t like that much, but moreover, it is a resource hog: while using the plugins above I can get the CPU load of Firefox to around 1&ndash;2% when I am not using it, Chromium drains my laptop battery in effectively half the time. To make things worse, Chromium apparently can&rsquo;t open links in the background like Firefox, and insists on raising the window every time I open a link from another process, which is distracting.</p>
+<p>Finally, <a href="https://discourse.julialang.org/">Julia&rsquo;s Discourse forum</a> started showing up empty, which was the last straw and I went through my plugins. It turns out hat <a href="https://www.eff.org/privacybadger">Privacy Badger</a> was responsible for everything: apparently it relies on heavy-handed heuristics and breaks a lot of webpages. One can report this, but instead of reporting around 10&ndash;20 pages which were broken, I simply removed the plugin. I have a lot of respect for what the Electronic Frontier Foundation does, but I am not sure that this plugin is very useful.</p>
+<p>So finally I got back the web the way I like it. Moral of the story: temporary workarounds become permanent, and bite back.</p>
+
+
+</div>
+
+<script src="https://utteranc.es/client.js"
+        repo="tpapp/tpapp.github.io"
+        issue-term="pathname"
+        label="comment"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>
+
+    </div>
+    <div id="smallscreenwarning">
+      site not optimized for small screens, math may break
+    </div>
+  </body>
+</html>
+

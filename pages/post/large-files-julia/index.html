@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <title>Working with large Julia source files in Emacs</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="Hugo 0.69.2" />
+    <link rel="stylesheet" type="text/css" href="../../css/style.css">
+    <link rel="stylesheet" type="text/css" href="../../css/syntax.css">
+    
+    <link href="https://fonts.googleapis.com/css?family=Noto+Serif:400,400i,700,700i|Ubuntu+Mono&display=swap&subset=latin-ext" rel="stylesheet"> 
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          
+          
+          processEscapes: true,
+          processEnvironments: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+          TeX: { equationNumbers: { autoNumber: "AMS" },
+          extensions: ["AMSmath.js", "AMSsymbols.js"] }
+          },
+        CommonHTML: { linebreaks: { automatic: true } },
+        "HTML-CSS": { linebreaks: { automatic: true } },
+        SVG: { linebreaks: { automatic: true } }
+      });
+    </script>
+    <script type="text/javascript" async
+            src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
+    </script>
+  </head>
+  <body>
+    <nav id="navbar">
+      <a href="https://tamaspapp.eu/">About</a>
+<a href="https://tamaspapp.eu/research">Research</a>
+<a href="https://tamaspapp.eu/teaching">Teaching</a>
+<a href="https://tamaspapp.eu/post">Blog</a>
+<a href="https://github.com/tpapp/">Github</a>
+<div class="dropdown">
+  <a class="dropdown-button">(tags)</a>
+  <div class="dropdown-content">
+    <p class="dropdown-header">site tags</p>
+    
+    <a href="../../tags/automatic-differentiation">automatic-differentiation</a>
+    
+    <a href="../../tags/bayesian">bayesian</a>
+    
+    <a href="../../tags/big-data">big-data</a>
+    
+    <a href="../../tags/blogging">blogging</a>
+    
+    <a href="../../tags/browser-plugins">browser-plugins</a>
+    
+    <a href="../../tags/coverage">coverage</a>
+    
+    <a href="../../tags/docker">docker</a>
+    
+    <a href="../../tags/emacs">emacs</a>
+    
+    <a href="../../tags/emacs25">emacs25</a>
+    
+    <a href="../../tags/firefox">firefox</a>
+    
+    <a href="../../tags/forwarddiff">forwarddiff</a>
+    
+    <a href="../../tags/gitlab">gitlab</a>
+    
+    <a href="../../tags/hugo">hugo</a>
+    
+    <a href="../../tags/indirect-inference">indirect-inference</a>
+    
+    <a href="../../tags/jacobian">jacobian</a>
+    
+    <a href="../../tags/julia">julia</a>
+    
+    <a href="../../tags/julia-repl">julia-repl</a>
+    
+    <a href="../../tags/latex">latex</a>
+    
+    <a href="../../tags/lisp">lisp</a>
+    
+    <a href="../../tags/log1p">log1p</a>
+    
+    <a href="../../tags/magit">magit</a>
+    
+    <a href="../../tags/math">math</a>
+    
+    <a href="../../tags/mcmc">mcmc</a>
+    
+    <a href="../../tags/microoptimization">microoptimization</a>
+    
+    <a href="../../tags/numerical-error">numerical-error</a>
+    
+    <a href="../../tags/packages">packages</a>
+    
+    <a href="../../tags/plots">plots</a>
+    
+    <a href="../../tags/stan">stan</a>
+    
+    <a href="../../tags/teaching">teaching</a>
+    
+    <a href="../../tags/ubuntu">ubuntu</a>
+    
+    <a href="../../tags/unit-testing">unit-testing</a>
+    
+    <a href="../../tags/weave">weave</a>
+    
+  </div>
+</div>
+<a href="https://tamaspapp.eu/post/index.xml" type="application/rss+xml" target="_blank"><img class="feedicon" src="https://tamaspapp.eu/img/feed-icon.svg" alt="Atom feed (blog)" title="Atom feed (blog)"></a>
+
+    </nav>
+    <div id="navbarplaceholder">
+      <a href="https://tamaspapp.eu/">About</a>
+<a href="https://tamaspapp.eu/research">Research</a>
+<a href="https://tamaspapp.eu/teaching">Teaching</a>
+<a href="https://tamaspapp.eu/post">Blog</a>
+<a href="https://github.com/tpapp/">Github</a>
+<div class="dropdown">
+  <a class="dropdown-button">(tags)</a>
+  <div class="dropdown-content">
+    <p class="dropdown-header">site tags</p>
+    
+    <a href="../../tags/automatic-differentiation">automatic-differentiation</a>
+    
+    <a href="../../tags/bayesian">bayesian</a>
+    
+    <a href="../../tags/big-data">big-data</a>
+    
+    <a href="../../tags/blogging">blogging</a>
+    
+    <a href="../../tags/browser-plugins">browser-plugins</a>
+    
+    <a href="../../tags/coverage">coverage</a>
+    
+    <a href="../../tags/docker">docker</a>
+    
+    <a href="../../tags/emacs">emacs</a>
+    
+    <a href="../../tags/emacs25">emacs25</a>
+    
+    <a href="../../tags/firefox">firefox</a>
+    
+    <a href="../../tags/forwarddiff">forwarddiff</a>
+    
+    <a href="../../tags/gitlab">gitlab</a>
+    
+    <a href="../../tags/hugo">hugo</a>
+    
+    <a href="../../tags/indirect-inference">indirect-inference</a>
+    
+    <a href="../../tags/jacobian">jacobian</a>
+    
+    <a href="../../tags/julia">julia</a>
+    
+    <a href="../../tags/julia-repl">julia-repl</a>
+    
+    <a href="../../tags/latex">latex</a>
+    
+    <a href="../../tags/lisp">lisp</a>
+    
+    <a href="../../tags/log1p">log1p</a>
+    
+    <a href="../../tags/magit">magit</a>
+    
+    <a href="../../tags/math">math</a>
+    
+    <a href="../../tags/mcmc">mcmc</a>
+    
+    <a href="../../tags/microoptimization">microoptimization</a>
+    
+    <a href="../../tags/numerical-error">numerical-error</a>
+    
+    <a href="../../tags/packages">packages</a>
+    
+    <a href="../../tags/plots">plots</a>
+    
+    <a href="../../tags/stan">stan</a>
+    
+    <a href="../../tags/teaching">teaching</a>
+    
+    <a href="../../tags/ubuntu">ubuntu</a>
+    
+    <a href="../../tags/unit-testing">unit-testing</a>
+    
+    <a href="../../tags/weave">weave</a>
+    
+  </div>
+</div>
+<a href="https://tamaspapp.eu/post/index.xml" type="application/rss+xml" target="_blank"><img class="feedicon" src="https://tamaspapp.eu/img/feed-icon.svg" alt="Atom feed (blog)" title="Atom feed (blog)"></a>
+
+    </div>
+    <div id="mainbody">
+
+<div id="content">
+<h1>Working with large Julia source files in Emacs</h1>2017/12/04
+<span class="tags">
+    
+    <a href="../../tags/julia">julia</a>
+    
+    <a href="../../tags/emacs">emacs</a>
+    
+</span>
+
+
+
+
+<div id="pagenav">
+  
+  <span class="pagenav-label">previous post:</span>&nbsp;
+  <a href="https://tamaspapp.eu/post/plot-workflow/">Publication quality plots in Julia</a>
+  
+  
+  
+  <br/>
+  
+  <span class="pagenav-label">next post:</span>&nbsp;
+  <a href="https://tamaspapp.eu/post/travis-docker-julia-ci/">Continuous integration for Julia packages using Docker</a>
+  
+</div>
+
+
+<p>When writing software, especially libraries, a natural question is how to organize source code into files. Some languages, eg Matlab, encourage a very fragmented style (one function per file), while for some other languages (C/C++), a separation between the interface (<code>.h</code>) and the implementation (<code>.c</code>/<code>.cpp</code>) is traditional.</p>
+
+<p>Julia has no such constraint: <code>include</code> allows the source code for a module to be organized into small pieces, possibly scattered in multiple directories, or it can be a single monolithic piece of code. The choice on this spectrum is up to the authors, and is largely a matter of personal preference.</p>
+
+<p>When I started working with Julia, I was following the example of some prominent packages, and organized code into small pieces (~ 500 LOC). Lately, whenever I refactored my code, I ended up putting it in a single file.</p>
+
+<p>I found the following Emacs tools very helpful for navigation.</p>
+
+<h2 id="form-feeds-and-pagebreaklinesmode">Form feeds and page-break-lines-mode</h2>
+
+<p>Form feed, or <code>\f</code>, is an ASCII control character that was used to request a new page in line printers. Your editor may display it as <code>^L</code>. It has a long history of being used as a separator, and Emacs supports it in various ways.</p>
+
+<p>By default, <code>C-x [</code> and <code>C-x ]</code> take you to the previous and next form feed separators. Combined with numerical prefixes, eg <code>C-3 C-x [</code>, you can jump across multiple ones very quickly. Other commands with <code>page</code> in their name allow narrowing, marking, and other functions.</p>
+
+<p>Many Emacs packages provide extra functionality for page breaks. My favorite is <a href="https://github.com/purcell/page-break-lines">page-break-lines</a>, which replaces <code>^L</code> with a horizontal line, so that the output looks like this:</p>
+
+<pre style="color: #262626; background-color: #ded6c5;">
+<span style="color: #2020cc; font-weight: bold;">export</span>
+    ML_estimator
+
+<hr style="background-color: #008b45; height: 1px; border: 0 none;"><span style="color: #008b45;"># </span><span style="color: #008b45;">general API
+</span>
+<span style="color: #fa5151;">"""
+    ML_estimator(ModelType, data...)
+
+Estimate `ModelType` using maximum likelihood
+on `data`, which  is model-specific.
+"""</span>
+<span style="color: #2020cc; font-weight: bold;">function</span> <span style="color: #2c53ca;">ML_estimator</span> <span style="color: #2020cc; font-weight: bold;">end</span>
+</pre>
+
+<h2 id="finding-things-quickly">Finding things quickly</h2>
+
+<p>I am using <a href="https://emacs-helm.github.io/helm/">helm</a> pervasively. <code>helm-occur</code> is very handy for listing all occurrences of something, and navigating them. The following is an except from <code>base/operators.jl</code>, looking for <code>isless</code>:</p>
+
+<pre style="color: #262626; background-color: #ded6c5;">
+<span style="color: #00ced1; text-decoration: underline;">operators.jl</span>:<span style="color: #ff7f00;">213</span>:types with a canonical total order should implement `<span style="color: #b00000;">isless</span>`.
+<span style="color: #00ced1; text-decoration: underline;">operators.jl</span>:<span style="color: #ff7f00;">227</span>:&lt;(x, y) = <span style="color: #b00000;">isless</span>(x, y)
+<span style="color: #00ced1; text-decoration: underline;">operators.jl</span>:<span style="color: #ff7f00;">300</span>:# this definition allows Number types to implement &lt; instead of <span style="color: #b00000;">isless</span>,
+<span style="color: #00ced1; text-decoration: underline;">operators.jl</span>:<span style="color: #ff7f00;">302</span>:<span style="color: #b00000;">isless</span>(x::Real, y::Real) = x&lt;y
+<span style="color: #00ced1; text-decoration: underline;">operators.jl</span>:<span style="color: #ff7f00;">303</span>:lexcmp(x::Real, y::Real) = <span style="color: #b00000;">isless</span>(x,y) ? -1 : ifelse(<span style="color: #b00000;">isless</span>(y,x), 1, 0)
+</pre>
+
+<p>You can move across these matches, jump to one in an adjacent buffer while keeping this list open, or save the list for later use. Its big brother <code>helm-do-grep-ag</code> is even more powerful, using <a href="https://geoff.greer.fm/ag/">ag</a> to find something in a directory tree.</p>
+
+<p>With these two tools, I find navigating files around 5K LOC very convenient — the better I learn Emacs, the larger my threshold for a “large” file becomes.<sup class="footnote-ref" id="fnref:In-case-you-are"><a class="footnote" href="#fn:In-case-you-are">1</a></sup></p>
+<div class="footnotes">
+
+<hr>
+
+<ol>
+<li id="fn:In-case-you-are">In case you are wondering, the largest files are around 6K LOC in Julia <code>Base</code> at the moment. <a class="footnote-return" href="#fnref:In-case-you-are"><sup>[return]</sup></a></li>
+</ol>
+</div>
+
+
+</div>
+
+<script src="https://utteranc.es/client.js"
+        repo="tpapp/tpapp.github.io"
+        issue-term="pathname"
+        label="comment"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>
+
+    </div>
+    <div id="smallscreenwarning">
+      site not optimized for small screens, math may break
+    </div>
+  </body>
+</html>
+

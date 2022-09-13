@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <title>Blog redesign 2.0</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="Hugo 0.69.2" />
+    <link rel="stylesheet" type="text/css" href="../../css/style.css">
+    <link rel="stylesheet" type="text/css" href="../../css/syntax.css">
+    
+    <link href="https://fonts.googleapis.com/css?family=Noto+Serif:400,400i,700,700i|Ubuntu+Mono&display=swap&subset=latin-ext" rel="stylesheet"> 
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          
+          
+          processEscapes: true,
+          processEnvironments: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+          TeX: { equationNumbers: { autoNumber: "AMS" },
+          extensions: ["AMSmath.js", "AMSsymbols.js"] }
+          },
+        CommonHTML: { linebreaks: { automatic: true } },
+        "HTML-CSS": { linebreaks: { automatic: true } },
+        SVG: { linebreaks: { automatic: true } }
+      });
+    </script>
+    <script type="text/javascript" async
+            src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
+    </script>
+  </head>
+  <body>
+    <nav id="navbar">
+      <a href="https://tamaspapp.eu/">About</a>
+<a href="https://tamaspapp.eu/research">Research</a>
+<a href="https://tamaspapp.eu/teaching">Teaching</a>
+<a href="https://tamaspapp.eu/post">Blog</a>
+<a href="https://github.com/tpapp/">Github</a>
+<div class="dropdown">
+  <a class="dropdown-button">(tags)</a>
+  <div class="dropdown-content">
+    <p class="dropdown-header">site tags</p>
+    
+    <a href="../../tags/automatic-differentiation">automatic-differentiation</a>
+    
+    <a href="../../tags/bayesian">bayesian</a>
+    
+    <a href="../../tags/big-data">big-data</a>
+    
+    <a href="../../tags/blogging">blogging</a>
+    
+    <a href="../../tags/browser-plugins">browser-plugins</a>
+    
+    <a href="../../tags/coverage">coverage</a>
+    
+    <a href="../../tags/docker">docker</a>
+    
+    <a href="../../tags/emacs">emacs</a>
+    
+    <a href="../../tags/emacs25">emacs25</a>
+    
+    <a href="../../tags/firefox">firefox</a>
+    
+    <a href="../../tags/forwarddiff">forwarddiff</a>
+    
+    <a href="../../tags/gitlab">gitlab</a>
+    
+    <a href="../../tags/hugo">hugo</a>
+    
+    <a href="../../tags/indirect-inference">indirect-inference</a>
+    
+    <a href="../../tags/jacobian">jacobian</a>
+    
+    <a href="../../tags/julia">julia</a>
+    
+    <a href="../../tags/julia-repl">julia-repl</a>
+    
+    <a href="../../tags/latex">latex</a>
+    
+    <a href="../../tags/lisp">lisp</a>
+    
+    <a href="../../tags/log1p">log1p</a>
+    
+    <a href="../../tags/magit">magit</a>
+    
+    <a href="../../tags/math">math</a>
+    
+    <a href="../../tags/mcmc">mcmc</a>
+    
+    <a href="../../tags/microoptimization">microoptimization</a>
+    
+    <a href="../../tags/numerical-error">numerical-error</a>
+    
+    <a href="../../tags/packages">packages</a>
+    
+    <a href="../../tags/plots">plots</a>
+    
+    <a href="../../tags/stan">stan</a>
+    
+    <a href="../../tags/teaching">teaching</a>
+    
+    <a href="../../tags/ubuntu">ubuntu</a>
+    
+    <a href="../../tags/unit-testing">unit-testing</a>
+    
+    <a href="../../tags/weave">weave</a>
+    
+  </div>
+</div>
+<a href="https://tamaspapp.eu/post/index.xml" type="application/rss+xml" target="_blank"><img class="feedicon" src="https://tamaspapp.eu/img/feed-icon.svg" alt="Atom feed (blog)" title="Atom feed (blog)"></a>
+
+    </nav>
+    <div id="navbarplaceholder">
+      <a href="https://tamaspapp.eu/">About</a>
+<a href="https://tamaspapp.eu/research">Research</a>
+<a href="https://tamaspapp.eu/teaching">Teaching</a>
+<a href="https://tamaspapp.eu/post">Blog</a>
+<a href="https://github.com/tpapp/">Github</a>
+<div class="dropdown">
+  <a class="dropdown-button">(tags)</a>
+  <div class="dropdown-content">
+    <p class="dropdown-header">site tags</p>
+    
+    <a href="../../tags/automatic-differentiation">automatic-differentiation</a>
+    
+    <a href="../../tags/bayesian">bayesian</a>
+    
+    <a href="../../tags/big-data">big-data</a>
+    
+    <a href="../../tags/blogging">blogging</a>
+    
+    <a href="../../tags/browser-plugins">browser-plugins</a>
+    
+    <a href="../../tags/coverage">coverage</a>
+    
+    <a href="../../tags/docker">docker</a>
+    
+    <a href="../../tags/emacs">emacs</a>
+    
+    <a href="../../tags/emacs25">emacs25</a>
+    
+    <a href="../../tags/firefox">firefox</a>
+    
+    <a href="../../tags/forwarddiff">forwarddiff</a>
+    
+    <a href="../../tags/gitlab">gitlab</a>
+    
+    <a href="../../tags/hugo">hugo</a>
+    
+    <a href="../../tags/indirect-inference">indirect-inference</a>
+    
+    <a href="../../tags/jacobian">jacobian</a>
+    
+    <a href="../../tags/julia">julia</a>
+    
+    <a href="../../tags/julia-repl">julia-repl</a>
+    
+    <a href="../../tags/latex">latex</a>
+    
+    <a href="../../tags/lisp">lisp</a>
+    
+    <a href="../../tags/log1p">log1p</a>
+    
+    <a href="../../tags/magit">magit</a>
+    
+    <a href="../../tags/math">math</a>
+    
+    <a href="../../tags/mcmc">mcmc</a>
+    
+    <a href="../../tags/microoptimization">microoptimization</a>
+    
+    <a href="../../tags/numerical-error">numerical-error</a>
+    
+    <a href="../../tags/packages">packages</a>
+    
+    <a href="../../tags/plots">plots</a>
+    
+    <a href="../../tags/stan">stan</a>
+    
+    <a href="../../tags/teaching">teaching</a>
+    
+    <a href="../../tags/ubuntu">ubuntu</a>
+    
+    <a href="../../tags/unit-testing">unit-testing</a>
+    
+    <a href="../../tags/weave">weave</a>
+    
+  </div>
+</div>
+<a href="https://tamaspapp.eu/post/index.xml" type="application/rss+xml" target="_blank"><img class="feedicon" src="https://tamaspapp.eu/img/feed-icon.svg" alt="Atom feed (blog)" title="Atom feed (blog)"></a>
+
+    </div>
+    <div id="mainbody">
+
+<div id="content">
+<h1>Blog redesign 2.0</h1>2017/09/29
+<span class="tags">
+    
+    <a href="../../tags/emacs">emacs</a>
+    
+    <a href="../../tags/hugo">Hugo</a>
+    
+</span>
+
+
+
+
+<div id="pagenav">
+  
+  <span class="pagenav-label">previous post:</span>&nbsp;
+  <a href="https://tamaspapp.eu/post/discontinuous_integral_ad/">Automatic differentiation of discontinuous integrals</a>
+  
+  
+  
+  <br/>
+  
+  <span class="pagenav-label">next post:</span>&nbsp;
+  <a href="https://tamaspapp.eu/post/branch_prediction/">CPU pipelines: when more is less</a>
+  
+</div>
+
+
+<p>I have redesigned my blog (again), mainly tweaking the CSS and
+hopefully achieving better support on small screens (which are still
+not ideal for math, but now you should get a red warning float at the
+bottom).</p>
+<p>I also re-did the feed code so that it would render better on
+<a href="https://www.juliabloggers.com/">juliabloggers.com</a>. Now the whole
+content of each post should be scraped seamlessly, and appear
+correctly. However, the only way to test the whole toolchain is to do
+it live, and I apologize if something is still not perfect and you get
+bogus updates (BTW, this post should not show up in the Julia feed).</p>
+<p>Highlights of the changes:</p>
+<ol>
+<li>
+<p>responsive design,</p>
+</li>
+<li>
+<p>nicer fonts,</p>
+</li>
+<li>
+<p>line breaks in MathJax when necessary and supported,</p>
+</li>
+<li>
+<p>better highlighting (Julia now looks especially nice),</p>
+</li>
+<li>
+<p>embedded code blocks with a download link,</p>
+</li>
+<li>
+<p>better image placement,</p>
+</li>
+<li>
+<p>Emacs screenshots now use a branch of <a href="https://github.com/tpapp/emacs-htmlize/tree/pre-colors">emacs-htmlize</a>, which hopefully gets merged soon.</p>
+</li>
+</ol>
+<p>As always, the source code for the whole site is <a href="https://github.com/tpapp/tpapp.github.io-source">available</a>.</p>
+
+
+</div>
+
+<script src="https://utteranc.es/client.js"
+        repo="tpapp/tpapp.github.io"
+        issue-term="pathname"
+        label="comment"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>
+
+    </div>
+    <div id="smallscreenwarning">
+      site not optimized for small screens, math may break
+    </div>
+  </body>
+</html>
+

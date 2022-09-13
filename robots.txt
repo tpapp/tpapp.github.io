@@ -1,0 +1,4 @@
+Sitemap: https://tamaspapp.eu/sitemap.xml
+
+User-agent: *
+Disallow:

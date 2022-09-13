@@ -1,0 +1,4 @@
+[deps]
+ArgCheck = "dce04be8-c92d-5529-be00-80e4d2c0e197"
+Franklin = "713c75ef-9fc9-4b05-94a9-213340da978e"
+NodeJS = "2bd173c7-0d6d-553b-b6af-13a54713934c"

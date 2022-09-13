@@ -16,7 +16,7 @@ Vienna](http://www.ihs.ac.at/research-groups/macroeconomics-and-public-finance/)
 * Julia Discourse forum: [@Tamas\_Papp](https://discourse.julialang.org/u/Tamas_Papp/)
 * Stan Discourse forum [@tpapp](https://discourse.mc-stan.org/u/tpapp/)
 
-## Curriculum Vitae 
+## Curriculum Vitae
 
 [PDF](/assets/pdf/cv.pdf)
 

@@ -184,6 +184,23 @@ small, .font_small {font-size: 0.833em;}
     clear: left;
 }
 
+.tags {
+    text-align: center;
+    font-size: 0.8em;
+    overflow: hidden;
+    padding: 0.5em;
+    margin: 0;
+    a {
+        text-decoration: none;
+        color: $fadefg;
+        padding: 0;
+    }
+    a:hover {
+        color: $fadehover;
+    }
+}
+
+
 .franklin-content {
     padding-top: 0;
     padding-bottom: $vertical-rhythm;
@@ -203,17 +220,6 @@ small, .font_small {font-size: 0.833em;}
         text-decoration: underline;
         text-decoration-color: $linkfg;
         text-decoration-skip: ink;
-    }
-    .tags {
-        overflow: hidden;
-        a {
-            text-decoration: none;
-            color: $fadefg;
-            padding: 0;
-        }
-        a:hover {
-            color: $fadehover;
-        }
     }
     #pagenav {
         .pagenav-label {

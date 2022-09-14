@@ -1,5 +1,4 @@
 @def title = "Tamás K. Papp's website"
-@def tags = ["syntax", "code"]
 
 # Tamás K. Papp
 ~~~

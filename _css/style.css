@@ -127,6 +127,19 @@ small, .font_small {
   margin: 0;
   clear: left; }
 
+.tags {
+  text-align: center;
+  font-size: 0.8em;
+  overflow: hidden;
+  padding: 0.5em;
+  margin: 0; }
+  .tags a {
+    text-decoration: none;
+    color: #aaa;
+    padding: 0; }
+  .tags a:hover {
+    color: #4682b4; }
+
 .franklin-content {
   padding-top: 0;
   padding-bottom: 1.875rem;
@@ -145,14 +158,6 @@ small, .font_small {
     text-decoration: underline;
     text-decoration-color: #3c6e99;
     text-decoration-skip: ink; }
-  .franklin-content .tags {
-    overflow: hidden; }
-    .franklin-content .tags a {
-      text-decoration: none;
-      color: #aaa;
-      padding: 0; }
-    .franklin-content .tags a:hover {
-      color: #4682b4; }
   .franklin-content #pagenav {
     margin: 1em 0; }
     .franklin-content #pagenav .pagenav-label {

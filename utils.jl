@@ -65,6 +65,10 @@ function hfun_pages_in_folders_by_date(folders)
     String(take!(io))
 end
 
+function format_tag_link(tag)
+    "<a href=\"/tag/$(Franklin.refstring(tag))\">$(tag)</a>"
+end
+
 """
 Generate a tag cloud as a set of links.
 
@@ -81,7 +85,21 @@ function hfun_tag_cloud()
     sorted_tags = first.(sort(collect(tag_count); rev = true, by = last))
     io = IOBuffer()
     for tag in sorted_tags
-        println(io, "<a href=\"/tag/$(Franklin.refstring(tag))\">$(tag)</a>")
+        println(io, format_tag_link(tag))
     end
     String(take!(io))
+end
+
+"""
+List tags as links, should be wrapped in a relevant `<div>`.
+"""
+function hfun_list_page_tags()
+    tags = locvar("tags")
+    tags ≡ nothing && return ""
+    io = IOBuffer()
+    for tag in tags
+        @show tag
+        println(io, format_tag_link(tag))
+    end
+    return String(take!(io))
 end

@@ -12,6 +12,8 @@ $darkfg: #eee;
 $darkhover: $lightgreyblue;
 $codefg: $darkgreyblue;         // inline code
 $linkfg: $darkgreyblue;         // links in content
+$srcfg: #fff;                   // source links
+$srcbg: $lightgreyblue;
 
 $content_width: 40em;
 $content_padding: 8em;
@@ -359,5 +361,12 @@ small, .font_small {font-size: 0.833em;}
         font-size: 0.8em;
         text-align: center;
         color: $fadefg;
+    }
+    .source_footer {
+        text-align: center;
+        color: $fadefg;
+        border-style: solid;
+        border-width: 0.5px;
+        border-color: $darkgreyblue;
     }
 }

@@ -44,6 +44,12 @@
     <priority>0.5</priority>
 </url>
 <url>
+    <loc>https://tamaspapp.eu/pages/blog/2022/09-14-reproducible-examples/index.html</loc>
+    <lastmod>2022-09-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+</url>
+<url>
     <loc>https://tamaspapp.eu/post/plot-workflow/index/</loc>
     <lastmod>2022-09-14</lastmod>
     <changefreq>monthly</changefreq>

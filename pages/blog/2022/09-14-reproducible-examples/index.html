@@ -1,0 +1,23 @@
+<!doctype html> <html lang=en > <meta charset=UTF-8 > <meta name=viewport  content="width=device-width, initial-scale=1"> <link rel=stylesheet  href="/libs/highlight/github.min.css"> <link href="/css/style.css" rel=stylesheet > <script src="/libs/vela/jquery.min.js"></script> <link rel=icon  href="/assets/favicon.png"> <title>Tamás K. Papp</title> <div id = "navbar"> <a href="/">About</a> <a href="/pages/research">Research</a> <a href="/pages/blog">Blog</a> <a href="/pages/teaching">Teaching</a> <a href="https://github.com/tpapp/">Github</a> <div class=dropdown > <a class=dropdown-button >(tags)</a> <div class=dropdown-content > <p class=dropdown-header >site tags</p> <a href="/tag/julia">julia</a> <a href="/tag/franklin">franklin</a> </div> </div> <a href="/feed.xml" type="application/rss+xml" target=_blank ><img class=feedicon  src="/assets/img/feed_icon.svg" alt="Atom feed (blog)" title="Atom feed (blog)"></a> </div> <div class=franklin-content > <h1 id=reproducible_examples_in_blog_posts ><a href="#reproducible_examples_in_blog_posts" class=header-anchor >Reproducible examples in blog posts</a></h1> <p>When migrating this blog recently from Hugo to Franklin.jl, the main difficulty I faced was reproducing old examples &#40;so effectively I didn&#39;t rerun anything, and just moved the old generated HTML pages&#41;. I have been bothered by this for a long time, so I wrote a quick hack which I packaged up in <a href="https://github.com/tpapp/ReproducibleLiteratePage.jl">ReproducibleLiteratePage.jl</a>.</p> <p>This page was processed using that package. Here is how it works:</p> <ol> <li><p>take a Julia code file marked up with <a href="https://fredrikekre.github.io/Literate.jl/">Literate.jl</a>,</p> <li><p>add a <code>Project.toml</code> and a <code>Manifest.toml</code> &#40;eg activate the directory as a project and add packages&#41;</p> <li><p>produce a markdown file using <code>ReproducibleLiteratePage.compile_directory&#40;&#41;</code>.</p> </ol> <p>Here is some code:</p> <pre><code class="julia hljs"><span class=hljs-keyword >using</span> UnPack <span class=hljs-comment ># the lightest package I could think of</span>
+<span class=hljs-keyword >struct</span> Foo
+    a
+    b
+<span class=hljs-keyword >end</span>
+<span class=hljs-meta >@unpack</span> a, b = Foo(<span class=hljs-number >1</span>, <span class=hljs-number >2</span>)
+a, b</code></pre> <pre><code class="julia hljs">(<span class=hljs-number >1</span>, <span class=hljs-number >2</span>)</code></pre>
+<p>The Julia source &#40;again, marked up with Literate.jl&#41;, <code>Project.toml</code>, and <code>Manifest.toml</code> should be available as a <code>tar</code> archive at the bottom of the page.</p>
+<p>
+<div class=source_footer >
+ This page was generated using <a href="https://github.com/fredrikekre/Literate.jl">Literate.jl</a>.<br />Download <a href=09-14-reproducible-examples_source.tar >the source, project, and manifest</a>. 
+</div>
+</p>
+<div class=page-foot >
+  <div class=copyright >
+    &copy; Tamás K. Papp. Last modified: September 14, 2022.
+    Website built with <a href="https://github.com/tlienart/Franklin.jl">Franklin.jl</a> and the <a href="https://julialang.org">Julia programming language</a>.
+  </div>
+</div>
+</div>
+  </main> 
+  <script src="/libs/vela/metisMenu.min.js"></script>
+  <script src="/libs/vela/slideout.min.js"></script>

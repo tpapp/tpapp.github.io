@@ -182,45 +182,16 @@ small, .font_small {
         width: 100%; } }
   .franklin-content table {
     margin: 1em; }
-  .franklin-content .codedisplay .codeheader {
-    margin-top: 1em;
-    background-color: #333;
-    color: #eee;
-    width: 100%;
-    border-radius: 0.4em 0.4em 0 0;
-    font-size: 0.833em; }
-    .franklin-content .codedisplay .codeheader p {
-      text-align: center;
-      padding: 3px 8px;
-      margin: 0; }
-      .franklin-content .codedisplay .codeheader p a, .franklin-content .codedisplay .codeheader p a:hover {
-        background-color: #333;
-        color: #eee; }
-  .franklin-content .codedisplay pre {
-    margin: 0; }
-  .franklin-content .codedownload {
-    margin-top: 1em;
-    background-color: #333;
-    color: #eee;
-    width: 100%;
-    border-radius: 0.4em;
-    font-size: 0.833em; }
-    .franklin-content .codedownload p {
-      text-align: center;
-      padding: 3px 8px;
-      margin: 0; }
-      .franklin-content .codedownload p a, .franklin-content .codedownload p a:hover {
-        background-color: #333;
-        color: #eee; }
   .franklin-content pre {
     margin: 0.9375rem 0;
     padding: 3px;
     overflow: auto;
     font-family: 'Ubuntu Mono', monospace; }
     .franklin-content pre code {
-      color: #222; }
+      border-left: 4px solid #3c6e99; }
   .franklin-content code {
-    font-family: 'Ubuntu Mono', monospace;
+    font-family: 'Ubuntu Mono', monospace; }
+  .franklin-content p code {
     color: #3c6e99; }
   .franklin-content ul.mainlist {
     list-style-type: none;

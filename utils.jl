@@ -109,7 +109,7 @@ Comments via utteranc.es.
 function hfun_add_comments()
     """
     <script src="https://utteranc.es/client.js"
-            repo="tpapp/tpapp.github.io"
+            repo="tpapp/tpapp.github.io-comments"
             issue-term="pathname"
             label="comment"
             theme="github-light"

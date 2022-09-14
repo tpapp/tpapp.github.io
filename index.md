@@ -36,4 +36,4 @@ Macroeconomics, labor macro, Bayesian estimation, numerical methods
 
 ## Software
 
-All of the software I made public is available on [Github](https://github.com/tpapp/) under some open-source license, usually MIT. [Most of my recent libraries](https://github.com/tpapp?utf8=%E2%9C%93&tab=repositories&q=&type=&language=julia) are in [Julia](https://julialang.org/). See [this post](/pages/post/orphaned-lisp-libraries/) about my Common Lisp libraries.
+All of the software I made public is available on [Github](https://github.com/tpapp/) under some open-source license, usually MIT. [Most of my recent libraries](https://github.com/tpapp?utf8=%E2%9C%93&tab=repositories&q=&type=&language=julia) are in [Julia](https://julialang.org/). See [this post](/post/orphaned-lisp-libraries/) about my Common Lisp libraries.

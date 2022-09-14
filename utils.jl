@@ -98,8 +98,23 @@ function hfun_list_page_tags()
     tags ≡ nothing && return ""
     io = IOBuffer()
     for tag in tags
-        @show tag
         println(io, format_tag_link(tag))
     end
     return String(take!(io))
+end
+
+"""
+Comments via utteranc.es.
+"""
+function hfun_add_comments()
+    """
+    <script src="https://utteranc.es/client.js"
+            repo="tpapp/tpapp.github.io"
+            issue-term="pathname"
+            label="comment"
+            theme="github-light"
+            crossorigin="anonymous"
+            async>
+    </script>
+    """
 end

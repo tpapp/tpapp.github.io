@@ -265,5 +265,9 @@ small, .font_small {
     font-size: 0.8em;
     text-align: center;
     color: #aaa; }
-
-/*# sourceMappingURL=style.css.map */
+  .franklin-content .source_footer {
+    text-align: center;
+    color: #aaa;
+    border-style: solid;
+    border-width: 0.5px;
+    border-color: #3c6e99; }

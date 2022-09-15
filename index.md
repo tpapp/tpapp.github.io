@@ -1,6 +1,7 @@
-@def title = "Tamás K. Papp's website"
++++
+title = "Tamás K. Papp"
++++
 
-# Tamás K. Papp
 ~~~
 <img id="tamaskpapp" src="/assets/img/tamas_k_papp.jpg" alt="Tamás K. Papp">
 ~~~

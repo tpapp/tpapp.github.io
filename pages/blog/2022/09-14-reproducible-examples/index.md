@@ -1,10 +1,9 @@
 +++
+title = "Reproducible examples in blog posts"
 date = "2022-09-14"
 tags = ["julia", "franklin", ]
 rss = "."
 +++
-
-# Reproducible examples in blog posts
 
 When migrating this blog recently from Hugo to Franklin.jl, the main difficulty I faced was reproducing old examples (so effectively I didn't rerun anything, and just moved the old generated HTML pages). I have been bothered by this for a long time, so I wrote a quick hack which I packaged up in [ReproducibleLiteratePage.jl](https://github.com/tpapp/ReproducibleLiteratePage.jl).
 

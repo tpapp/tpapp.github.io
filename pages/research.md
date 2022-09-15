@@ -1,4 +1,6 @@
-@def title = "Research"
++++
+title = "Research"
++++
 
 ## Published papers
 

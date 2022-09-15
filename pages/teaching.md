@@ -1,5 +1,6 @@
-@def title = "Teaching"
-@def date = "2018-04-27T14:48:06+02:00"
++++
+title = "Teaching"
++++
 
 ## Introduction to Bayesian estimation of DSGE models
 

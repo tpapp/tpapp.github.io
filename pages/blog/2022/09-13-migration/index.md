@@ -1,10 +1,9 @@
 +++
+title = "Migration from Hugo to Franklin.jl"
 date = "2022-09-13"
 tags = String["announcement"]
 rss = "."
 +++
-
-# Migration from Hugo to Franklin.jl
 
 After a long break, I am restarting my blog. In addition to personal reasons, the main reason I did not keep it up is that I found [Hugo](https://gohugo.io/) a bit difficult to work with: updates to Hugo required updates to my setup, and integration with Julia was less than ideal. I have now switched to [Franklin.jl](https://franklinjl.org/).
 

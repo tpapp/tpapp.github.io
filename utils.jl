@@ -118,3 +118,13 @@ function hfun_add_comments()
     </script>
     """
 end
+
+"""
+Obtain the local variable `arg`, make sure it is defined, convert to HTML.
+"""
+function hfun_markdown2html_var(arg)
+    arg = only(arg)
+    str = locvar(arg)
+    @assert str ≢ nothing
+    Franklin.md2html(str; stripp = true)
+end

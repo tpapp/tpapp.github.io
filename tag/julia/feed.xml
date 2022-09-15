@@ -33,7 +33,6 @@
   
   <content:encoded>
     <![CDATA[  
-<h1 id="reproducible_examples_in_blog_posts">Reproducible examples in blog posts</h1>
 <p>When migrating this blog recently from Hugo to Franklin.jl, the main difficulty I faced was reproducing old examples &#40;so effectively I didn&#39;t rerun anything, and just moved the old generated HTML pages&#41;. I have been bothered by this for a long time, so I wrote a quick hack which I packaged up in <a href="https://github.com/tpapp/ReproducibleLiteratePage.jl">ReproducibleLiteratePage.jl</a>.</p>
 <p>This page was processed using that package. Here is how it works:</p>
 <ol>
@@ -62,7 +61,7 @@ a, b</code></pre>
  ]]>
   </content:encoded>
     
-  <pubDate>Wed, 14 Sep 2022 00:00:00 +0000</pubDate>  
+  <pubDate>Thu, 15 Sep 2022 00:00:00 +0000</pubDate>  
   
   
   <atom:author>

@@ -1,0 +1,4 @@
+[deps]
+DisplayAs = "0b91fe84-8a4c-11e9-3e1d-67c38462b6d6"
+PGFPlotsX = "8314cec4-20b6-5062-9cdb-752b83310925"
+SpectralKit = "5c252ae7-b5b6-46ab-a016-b0e3d78320b7"

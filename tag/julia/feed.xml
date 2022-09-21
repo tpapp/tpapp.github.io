@@ -23,6 +23,112 @@
 
 <item>
   <title>
+    <![CDATA[  Approximating a function using derivatives  ]]>
+  </title>
+  <link> https://tamaspapp.eu/pages/blog/2022/hermite-approximation-spectralkit/index.html </link>
+  <guid> https://tamaspapp.eu/pages/blog/2022/hermite-approximation-spectralkit/index.html </guid>
+  <description>
+    <![CDATA[  .  ]]>
+  </description>  
+  
+  <content:encoded>
+    <![CDATA[  
+<p>When simulating from an economic model, I had to approximate a function \(f(x; \theta): [0,1] \to [0,1]\) for a variety of \(\theta\)s. \(f\) itself has to be solved for numerically, but otherwise it is pretty friendly, being continuous and increasing, with \(f(0)=0\) and \(f(1)=1\).</p>
+<p>After profiling, this turned out to be the most costly part, so I had to approximate it. Since I needed derivatives \(f'(x)\), I was wondering whether making the approximation match them &#40;known as a <a href="https://en.wikipedia.org/wiki/Hermite_interpolation">Hermite interpolation</a>&#41; would increase accuracy.</p>
+<p>The &#40;pedagogical, unoptimized&#41; code below sums up the gist of my numerical experiments, with <code>f</code> below standing in for my implicitly solved function. It also demonstrates the new features of <a href="https://github.com/tpapp/SpectralKit.jl/">SpectralKit.jl</a> <code>v0.10</code>.</p>
+<p>First, we set up the problem:</p>
+<pre><code class="language-julia">using SpectralKit, PGFPlotsX, DisplayAsf&#40;x&#41; &#61; &#40;exp&#40;x&#41; - 1&#41; / &#40;exp&#40;1&#41; - 1&#41;
+f′&#40;x&#41; &#61; exp&#40;x&#41; / &#40;exp&#40;1&#41; - 1&#41;
+const I &#61; BoundedLinear&#40;0, 1&#41;   # interval we map from</code></pre>
+<p>Then define an interpolation using <code>N</code> Chebyshev nodes, matching the values.</p>
+<pre><code class="language-julia">function interpolation0&#40;f, N&#41;
+    basis &#61; Chebyshev&#40;EndpointGrid&#40;&#41;, N&#41;
+    ϕ &#61; collocation_matrix&#40;basis&#41; \ map&#40;f ∘ from_pm1&#40;I&#41;, grid&#40;basis&#41;&#41;
+    linear_combination&#40;basis, ϕ&#41; ∘ to_pm1&#40;I&#41;
+end;</code></pre>
+<p>Same exercise, but with the derivatives too, so we need two bases, one with double the number of functions &#40;so we need to make sure <code>N</code> is even&#41;, while we just use <code>N/2</code> for the nodes.</p>
+<pre><code class="language-julia">function interpolation01&#40;f, f′, N&#41;
+    @assert iseven&#40;N&#41;
+    basis1 &#61; Chebyshev&#40;EndpointGrid&#40;&#41;, N ÷ 2&#41; # nodes from this one
+    basis2 &#61; Chebyshev&#40;EndpointGrid&#40;&#41;, N&#41;     # evaluate on this basis
+    x &#61; from_pm1.&#40;I, grid&#40;basis1&#41;&#41;            # map nodes from &#91;-1,1&#93;
+    M &#61; collocation_matrix&#40;basis2, to_pm1.&#40;I, derivatives.&#40;x&#41;&#41;&#41;
+    ϕ &#61; vcat&#40;map&#40;y -&gt; y&#91;0&#93;, M&#41;, map&#40;y -&gt; y&#91;1&#93;, M&#41;&#41; \ vcat&#40;f.&#40;x&#41;, f′.&#40;x&#41;&#41;
+    linear_combination&#40;basis2, ϕ&#41; ∘ to_pm1&#40;I&#41;
+end;</code></pre>
+<p>Importantly, note that mapping to &#91;-1,1&#93; for the collocation matrix has to be preceded by lifting to derivatives.</p>
+<p>Then calculate the max abs difference, in digits &#40;<code>log10</code>&#41;.</p>
+<pre><code class="language-julia">function log10_max_abs_diff&#40;f, f̂; M &#61; 1000&#41;
+    x &#61; range&#40;0, 1; length &#61; M&#41;
+    log10&#40;maximum&#40;@. abs&#40;f&#40;x&#41; - f̂&#40;x&#41;&#41;&#41;&#41;
+end;</code></pre>
+<p>Then let&#39;s explore the errors in values ...</p>
+<pre><code class="language-julia">Ns &#61; 4:2:20
+errors &#61; &#91;&#40;log10_max_abs_diff&#40;f, interpolation0&#40;f, N&#41;&#41;,
+           log10_max_abs_diff&#40;f, interpolation01&#40;f, f′, N&#41;&#41;&#41;
+          for N in Ns&#93;</code></pre>
+<pre><code class="language-julia">9-element Vector&#123;Tuple&#123;Float64, Float64&#125;&#125;:
+ &#40;-3.1996028783051695, -2.594513489315976&#41;
+ &#40;-5.882145733021446, -5.488666848393999&#41;
+ &#40;-8.835160643191552, -8.232779398084544&#41;
+ &#40;-11.994023867372805, -11.44897859894945&#41;
+ &#40;-15.176438519807359, -14.664555158828485&#41;
+ &#40;-15.35252977886304, -15.35252977886304&#41;
+ &#40;-15.255619765854984, -15.35252977886304&#41;
+ &#40;-15.35252977886304, -15.35252977886304&#41;
+ &#40;-15.35252977886304, -15.35252977886304&#41;</code></pre>
+<p>... and derivatives.</p>
+<pre><code class="language-julia">d_errors &#61; &#91;&#40;log10_max_abs_diff&#40;f′, &#40;x -&gt; x&#91;1&#93;&#41; ∘ interpolation0&#40;f, N&#41; ∘ derivatives&#41;,
+             log10_max_abs_diff&#40;f′, &#40;x -&gt; x&#91;1&#93;&#41; ∘ interpolation01&#40;f, f′, N&#41; ∘ derivatives&#41;&#41;
+            for N in Ns&#93;</code></pre>
+<pre><code class="language-julia">9-element Vector&#123;Tuple&#123;Float64, Float64&#125;&#125;:
+ &#40;-2.0758500387125216, -2.093336352131656&#41;
+ &#40;-4.549339116162139, -4.611253272379436&#41;
+ &#40;-7.363367596306161, -7.429305371299876&#41;
+ &#40;-10.417554370684012, -10.485171320264207&#41;
+ &#40;-13.381718167990524, -13.689771947181466&#41;
+ &#40;-13.834015838985154, -14.374806173574193&#41;
+ &#40;-14.03551167781493, -14.539616422220185&#41;
+ &#40;-13.724140848812729, -14.750469787535078&#41;
+ &#40;-13.714040521908403, -14.724140848812729&#41;</code></pre>
+<p>Finally the plots:</p>
+<pre><code class="language-julia">@pgf Axis&#40;&#123; xlabel &#61; &quot;number of basis functions&quot;,
+            ylabel &#61; &quot;log10 abs error in values&quot;,
+            legend_cell_align&#61; &quot;left&quot; &#125;,
+          PlotInc&#40;Table&#40;Ns, first.&#40;errors&#41;&#41;&#41;,
+          LegendEntry&#40;&quot;fitting values&quot;&#41;,
+          PlotInc&#40;Table&#40;Ns, last.&#40;errors&#41;&#41;&#41;,
+          LegendEntry&#40;&quot;fitting values and derivatives&quot;&#41;&#41; |&gt; DisplayAs.SVG</code></pre>
+<p><img src="2197788484.svg" alt="" /></p>
+<pre><code class="language-julia">@pgf Axis&#40;&#123; xlabel &#61; &quot;number of basis functions&quot;,
+            ylabel &#61; &quot;log10 abs error in values&quot;,
+            legend_cell_align&#61; &quot;left&quot; &#125;,
+          PlotInc&#40;Table&#40;Ns, first.&#40;d_errors&#41;&#41;&#41;,
+          LegendEntry&#40;&quot;fitting values&quot;&#41;,
+          PlotInc&#40;Table&#40;Ns, last.&#40;d_errors&#41;&#41;&#41;,
+          LegendEntry&#40;&quot;fitting values and derivatives&quot;&#41;&#41; |&gt; DisplayAs.SVG</code></pre>
+<p><img src="3226471975.svg" alt="" /></p>
+<p>The conclusion is that even without matching them explicitly, derivatives are well-approximated. Getting an extra digit of accuracy in derivatives above 12–14 nodes means sacrificing a digit of accuracy with a low number of nodes. 14 seems to be the break-even point here, but then we are at machine precision anyway.</p>
+<p>As usual, simply approximating with Chebyshev polynomials is extremely accurate in itself for practical purposes, even when derivatives are needed. Of course, this depends on the function being “nice”.</p>
+<p>
+<div class="source_footer">
+ This page was generated using <a href="https://github.com/fredrikekre/Literate.jl">Literate.jl</a>.<br />Download <a href="hermite-approximation-spectralkit_source.tar">the source, project, and manifest</a>. 
+</div>
+</p>
+ ]]>
+  </content:encoded>
+    
+  <pubDate>Wed, 21 Sep 2022 00:00:00 +0000</pubDate>  
+  
+  
+  <atom:author>
+    <atom:name>Tamás K. Papp</atom:name>
+  </atom:author>
+        
+</item>
+
+<item>
+  <title>
     <![CDATA[  Reproducible examples in blog posts  ]]>
   </title>
   <link> https://tamaspapp.eu/pages/blog/2022/09-14-reproducible-examples/index.html </link>
@@ -61,7 +167,7 @@ a, b</code></pre>
  ]]>
   </content:encoded>
     
-  <pubDate>Thu, 15 Sep 2022 00:00:00 +0000</pubDate>  
+  <pubDate>Wed, 21 Sep 2022 00:00:00 +0000</pubDate>  
   
   
   <atom:author>

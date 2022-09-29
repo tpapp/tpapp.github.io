@@ -179,7 +179,24 @@ small, .font_small {
       .main-content img {
         width: 100%; } }
   .main-content table {
-    margin: 1em; }
+    /* modified from https://stackoverflow.com/a/68808784 */
+    border-collapse: collapse;
+    border: 2px solid #000;
+    border-width: 2px 0;
+    text-align: left; }
+    .main-content table th, .main-content table td {
+      line-height: 1.4;
+      padding-right: 12px; }
+    .main-content table th:last-child, .main-content table td:last-child {
+      padding-right: 0; }
+    .main-content table th:not(:empty) {
+      border-bottom: 1px solid #000;
+      font-style: italic;
+      font-weight: normal; }
+    .main-content table thead:first-child th {
+      text-align: center; }
+    .main-content table tbody tr td:last-child {
+      text-align: right; }
   .main-content pre {
     margin: 0.9375rem 0;
     padding: 3px;
@@ -258,3 +275,5 @@ small, .font_small {
       padding: 0; }
     .main-content .tags a:hover {
       color: #4682b4; }
+
+/*# sourceMappingURL=style.css.map */

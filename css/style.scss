@@ -252,7 +252,29 @@ small, .font_small {font-size: 0.833em;}
         margin: 0 auto;
     }
     table {
-        margin: 1em;
+        /* modified from https://stackoverflow.com/a/68808784 */
+        border-collapse: collapse;
+        border: 2px solid #000;
+        border-width: 2px 0;
+        text-align: left;
+        th,td {
+            line-height: 1.4;
+            padding-right: 12px;
+        }
+        th:last-child, td:last-child {
+            padding-right: 0;
+        }
+        th:not(:empty) {
+            border-bottom: 1px solid #000;
+            font-style: italic;
+            font-weight: normal;
+        }
+        thead:first-child th {
+            text-align: center;
+        }
+        tbody tr td:last-child {
+            text-align: right;
+        }   
     }
     pre {
         margin: 0.5 * $vertical-rhythm 0;

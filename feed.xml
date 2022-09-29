@@ -118,7 +118,52 @@ errors &#61; &#91;&#40;log10_max_abs_diff&#40;f, interpolation0&#40;f, N&#41;&#4
  ]]>
   </content:encoded>
     
-  <pubDate>Wed, 21 Sep 2022 00:00:00 +0000</pubDate>  
+  <pubDate>Thu, 29 Sep 2022 00:00:00 +0000</pubDate>  
+  
+  
+  <atom:author>
+    <atom:name>Tamás K. Papp</atom:name>
+  </atom:author>
+        
+</item>
+
+<item>
+  <title>
+    <![CDATA[  Tables output with Literate.jl  ]]>
+  </title>
+  <link> https://tamaspapp.eu/pages/blog/2022/markdown-tables/index.html </link>
+  <guid> https://tamaspapp.eu/pages/blog/2022/markdown-tables/index.html </guid>
+  <description>
+    <![CDATA[  .  ]]>
+  </description>  
+  
+  <content:encoded>
+    <![CDATA[  
+<p>I recently wrote a very lightweight package called <a href="https://github.com/tpapp/MarkdownTables.jl">MarkdownTables.jl</a> that makes it easy to embed tables using Literate.jl. It handles anything that works with <a href="https://tables.juliadata.org">Tables.jl</a>:</p>
+<pre><code class="language-julia">using MarkdownTables
+my_table &#61; &#91;&#40;animal &#61; &quot;cat&quot;, legs &#61; 4&#41;,
+            &#40;animal &#61; &quot;catfish&quot;, legs &#61; 0&#41;,
+            &#40;animal &#61; &quot;canary&quot;, legs &#61; 2&#41;&#93;
+my_table |&gt; markdown_table&#40;&#41;</code></pre>
+<table><tr><th align="right">animal</th><th align="right">legs</th></tr><tr><td align="right">cat</td><td align="right">4</td></tr><tr><td align="right">catfish</td><td align="right">0</td></tr><tr><td align="right">canary</td><td align="right">2</td></tr></table>
+<p>Under the hood, it just wraps some basic Markdown with <a href="https://github.com/tkf/DisplayAs.jl">DisplayAs.jl</a>:</p>
+<pre><code class="language-julia">my_table |&gt; markdown_table&#40;String&#41; |&gt; print</code></pre>
+<pre><code class="language-julia">| animal  | legs |
+|---------|------|
+|     cat |    4 |
+| catfish |    0 |
+|  canary |    2 |</code></pre>
+<p>The default output is pretty basic — while the function has some options for formatting, it is recommended that you use CSS instead.</p>
+<p>I expect that this pretty much rounds out the tooling I need for blogging with <a href="https://franklinjl.org/">Franklin.jl</a>. Feedback and PRs are of course welcome, but I intend to keep this package very basic.</p>
+<p>
+<div class="source_footer">
+ This page was generated using <a href="https://github.com/fredrikekre/Literate.jl">Literate.jl</a>.<br />Download <a href="markdown-tables_source.tar">the source, project, and manifest</a>. 
+</div>
+</p>
+ ]]>
+  </content:encoded>
+    
+  <pubDate>Thu, 29 Sep 2022 00:00:00 +0000</pubDate>  
   
   
   <atom:author>
@@ -167,7 +212,7 @@ a, b</code></pre>
  ]]>
   </content:encoded>
     
-  <pubDate>Wed, 21 Sep 2022 00:00:00 +0000</pubDate>  
+  <pubDate>Thu, 29 Sep 2022 00:00:00 +0000</pubDate>  
   
   
   <atom:author>

@@ -2,3 +2,4 @@ __site/
 node_modules/
 package-lock.json
 /_css/.sass-cache
+/_css/style.css.map

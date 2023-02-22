@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<rss version="2.0"
+  xmlns:content="http://purl.org/rss/1.0/modules/content/"
+  xmlns:dc="http://purl.org/dc/elements/1.1/"
+  xmlns:media="http://search.yahoo.com/mrss/"
+  xmlns:atom="http://www.w3.org/2005/Atom"
+  xmlns:georss="http://www.georss.org/georss">
+
+  <channel>
+    <title>
+      <![CDATA[  Tamás K. Papp  ]]>
+    </title>
+    <link> https://tamaspapp.eu </link>
+    <description>
+      <![CDATA[  website  ]]>
+    </description>
+    <atom:link
+      href="https://tamaspapp.eu/feed.xml"
+      rel="self"
+      type="application/rss+xml" />
+
+
+<item>
+  <title>
+    <![CDATA[  TransformVariables.jl gets pretty printing  ]]>
+  </title>
+  <link> https://tamaspapp.eu/pages/blog/2023/02-22-transformvariables-pretty-printing/index.html </link>
+  <guid> https://tamaspapp.eu/pages/blog/2023/02-22-transformvariables-pretty-printing/index.html </guid>
+  <description>
+    <![CDATA[  .  ]]>
+  </description>  
+  
+  <content:encoded>
+    <![CDATA[  
+<p>A recent update &#40;version 0.8.2&#41; to <a href="https://github.com/tpapp/TransformVariables.jl">TransformVariables.jl</a> adds pretty printing of &#40;nested&#41; transformations. Eg what used to be</p>
+<pre><code class="language-julia">julia&gt; using StaticArrays, TransformVariablesjulia&gt; t &#61; as&#40;&#40;a &#61; asℝ₊, b &#61; as&#40;Array, asℝ₋, 3, 3&#41;,
+               c &#61; corr_cholesky_factor&#40;13&#41;,
+               d &#61; as&#40;&#40;asℝ, corr_cholesky_factor&#40;SMatrix&#123;3,3&#125;&#41;,
+                       UnitSimplex&#40;3&#41;, UnitVector&#40;4&#41;&#41;&#41;&#41;&#41;
+TransformVariables.TransformTuple&#123;NamedTuple&#123;&#40;:a, :b, :c, :d&#41;, Tuple&#123;TransformVariables.ShiftedExp&#123;true, Int64&#125;, TransformVariables.ArrayTransformation&#123;TransformVariables.ShiftedExp&#123;false, Int64&#125;, 2&#125;, CorrCholeskyFactor, TransformVariables.TransformTuple&#123;Tuple&#123;TransformVariables.Identity, TransformVariables.StaticCorrCholeskyFactor&#123;3, 3&#125;, UnitSimplex, UnitVector&#125;&#125;&#125;&#125;&#125;&#40;&#40;a &#61; asℝ₊, b &#61; TransformVariables.ArrayTransformation&#123;TransformVariables.ShiftedExp&#123;false, Int64&#125;, 2&#125;&#40;asℝ₋, &#40;3, 3&#41;&#41;, c &#61; CorrCholeskyFactor&#40;13&#41;, d &#61; TransformVariables.TransformTuple&#123;Tuple&#123;TransformVariables.Identity, TransformVariables.StaticCorrCholeskyFactor&#123;3, 3&#125;, UnitSimplex, UnitVector&#125;&#125;&#40;&#40;asℝ, TransformVariables.StaticCorrCholeskyFactor&#123;3, 3&#125;&#40;&#41;, UnitSimplex&#40;3&#41;, UnitVector&#40;4&#41;&#41;, 9&#41;&#41;, 97&#41;</code></pre>
+<p>which is a single line of 700&#43; characters &#40;which your browser mercifully hides behind a scrollbar&#41;, we now have</p>
+<pre><code class="language-julia">julia&gt; using StaticArrays, TransformVariables
+&#91; Info: Precompiling TransformVariables &#91;84d833dd-6860-57f9-a1a7-6da5db126cff&#93;julia&gt; t &#61; as&#40;&#40;a &#61; asℝ₊, b &#61; as&#40;Array, asℝ₋, 3, 3&#41;,
+                      c &#61; corr_cholesky_factor&#40;13&#41;,
+                      d &#61; as&#40;&#40;asℝ, corr_cholesky_factor&#40;SMatrix&#123;3,3&#125;&#41;,
+                              UnitSimplex&#40;3&#41;, UnitVector&#40;4&#41;&#41;&#41;&#41;&#41;
+&#91;1:97&#93; NamedTuple of transformations
+  &#91;1:1&#93; :a → asℝ₊
+  &#91;2:10&#93; :b → 3×3×asℝ₋ &#40;dimension 1&#41;
+  &#91;11:88&#93; :c → 13×13 correlation cholesky factor
+  &#91;89:97&#93; :d → Tuple of transformations
+    &#91;98:98&#93; 1 → asℝ
+    &#91;108:110&#93; 2 → SMatrix&#123;3,3&#125; correlation cholesky factor
+    &#91;120:121&#93; 3 → 3 element unit simplex transformation
+    &#91;131:133&#93; 4 → 4 element unit vector transformation</code></pre>
+<p>which tells you which indices map to which part of the result.</p>
+ ]]>
+  </content:encoded>
+    
+  <pubDate>Wed, 22 Feb 2023 00:00:00 +0000</pubDate>  
+  
+  
+  <atom:author>
+    <atom:name>Tamás K. Papp</atom:name>
+  </atom:author>
+        
+</item>
+</channel></rss>

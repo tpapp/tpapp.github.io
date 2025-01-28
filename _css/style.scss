@@ -15,7 +15,7 @@ $linkfg: $darkgreyblue;         // links in content
 $srcfg: #fff;                   // source links
 $srcbg: $lightgreyblue;
 
-$content_width: 40em;
+$content_width: 55em;
 $content_padding: 8em;
 $smallscreen_padding: 0.5em;
 
@@ -281,9 +281,6 @@ small, .font_small {font-size: 0.833em;}
         padding: 3px;
         overflow: auto;
         font-family: 'Ubuntu Mono', monospace;
-        code {
-            border-left: 2px solid $darkgreyblue;
-        }
     }
     code {
         font-family: 'Ubuntu Mono', monospace;

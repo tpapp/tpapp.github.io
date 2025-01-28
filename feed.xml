@@ -23,6 +23,51 @@
 
 <item>
   <title>
+    <![CDATA[  Tables output with Literate.jl  ]]>
+  </title>
+  <link> https://tamaspapp.eu/pages/blog/2022/markdown-tables/index.html </link>
+  <guid> https://tamaspapp.eu/pages/blog/2022/markdown-tables/index.html </guid>
+  <description>
+    <![CDATA[  .  ]]>
+  </description>  
+  
+  <content:encoded>
+    <![CDATA[  
+<p>I recently wrote a very lightweight package called <a href="https://github.com/tpapp/MarkdownTables.jl">MarkdownTables.jl</a> that makes it easy to embed tables using Literate.jl. It handles anything that works with <a href="https://tables.juliadata.org">Tables.jl</a>:</p>
+<pre><code class="language-julia">using MarkdownTables
+my_table &#61; &#91;&#40;animal &#61; &quot;cat&quot;, legs &#61; 4&#41;,
+            &#40;animal &#61; &quot;catfish&quot;, legs &#61; 0&#41;,
+            &#40;animal &#61; &quot;canary&quot;, legs &#61; 2&#41;&#93;
+my_table |&gt; markdown_table&#40;&#41;</code></pre>
+<table><tr><th align="right">animal</th><th align="right">legs</th></tr><tr><td align="right">cat</td><td align="right">4</td></tr><tr><td align="right">catfish</td><td align="right">0</td></tr><tr><td align="right">canary</td><td align="right">2</td></tr></table>
+<p>Under the hood, it just wraps some basic Markdown with <a href="https://github.com/tkf/DisplayAs.jl">DisplayAs.jl</a>:</p>
+<pre><code class="language-julia">my_table |&gt; markdown_table&#40;String&#41; |&gt; print</code></pre>
+<pre><code class="language-julia">| animal  | legs |
+|---------|------|
+|     cat |    4 |
+| catfish |    0 |
+|  canary |    2 |</code></pre>
+<p>The default output is pretty basic — while the function has some options for formatting, it is recommended that you use CSS instead.</p>
+<p>I expect that this pretty much rounds out the tooling I need for blogging with <a href="https://franklinjl.org/">Franklin.jl</a>. Feedback and PRs are of course welcome, but I intend to keep this package very basic.</p>
+<p>
+<div class="source_footer">
+ This page was generated using <a href="https://github.com/fredrikekre/Literate.jl">Literate.jl</a>.<br />Download <a href="markdown-tables_source.tar">the source, project, and manifest</a>. 
+</div>
+</p>
+ ]]>
+  </content:encoded>
+    
+  <pubDate>Tue, 28 Jan 2025 00:00:00 +0000</pubDate>  
+  
+  
+  <atom:author>
+    <atom:name>Tamás K. Papp</atom:name>
+  </atom:author>
+        
+</item>
+
+<item>
+  <title>
     <![CDATA[  TransformVariables.jl gets pretty printing  ]]>
   </title>
   <link> https://tamaspapp.eu/pages/blog/2023/02-22-transformvariables-pretty-printing/index.html </link>
@@ -58,7 +103,7 @@ TransformVariables.TransformTuple&#123;NamedTuple&#123;&#40;:a, :b, :c, :d&#41;,
  ]]>
   </content:encoded>
     
-  <pubDate>Wed, 22 Feb 2023 00:00:00 +0000</pubDate>  
+  <pubDate>Tue, 28 Jan 2025 00:00:00 +0000</pubDate>  
   
   
   <atom:author>
@@ -164,52 +209,7 @@ errors &#61; &#91;&#40;log10_max_abs_diff&#40;f, interpolation0&#40;f, N&#41;&#4
  ]]>
   </content:encoded>
     
-  <pubDate>Wed, 22 Feb 2023 00:00:00 +0000</pubDate>  
-  
-  
-  <atom:author>
-    <atom:name>Tamás K. Papp</atom:name>
-  </atom:author>
-        
-</item>
-
-<item>
-  <title>
-    <![CDATA[  Tables output with Literate.jl  ]]>
-  </title>
-  <link> https://tamaspapp.eu/pages/blog/2022/markdown-tables/index.html </link>
-  <guid> https://tamaspapp.eu/pages/blog/2022/markdown-tables/index.html </guid>
-  <description>
-    <![CDATA[  .  ]]>
-  </description>  
-  
-  <content:encoded>
-    <![CDATA[  
-<p>I recently wrote a very lightweight package called <a href="https://github.com/tpapp/MarkdownTables.jl">MarkdownTables.jl</a> that makes it easy to embed tables using Literate.jl. It handles anything that works with <a href="https://tables.juliadata.org">Tables.jl</a>:</p>
-<pre><code class="language-julia">using MarkdownTables
-my_table &#61; &#91;&#40;animal &#61; &quot;cat&quot;, legs &#61; 4&#41;,
-            &#40;animal &#61; &quot;catfish&quot;, legs &#61; 0&#41;,
-            &#40;animal &#61; &quot;canary&quot;, legs &#61; 2&#41;&#93;
-my_table |&gt; markdown_table&#40;&#41;</code></pre>
-<table><tr><th align="right">animal</th><th align="right">legs</th></tr><tr><td align="right">cat</td><td align="right">4</td></tr><tr><td align="right">catfish</td><td align="right">0</td></tr><tr><td align="right">canary</td><td align="right">2</td></tr></table>
-<p>Under the hood, it just wraps some basic Markdown with <a href="https://github.com/tkf/DisplayAs.jl">DisplayAs.jl</a>:</p>
-<pre><code class="language-julia">my_table |&gt; markdown_table&#40;String&#41; |&gt; print</code></pre>
-<pre><code class="language-julia">| animal  | legs |
-|---------|------|
-|     cat |    4 |
-| catfish |    0 |
-|  canary |    2 |</code></pre>
-<p>The default output is pretty basic — while the function has some options for formatting, it is recommended that you use CSS instead.</p>
-<p>I expect that this pretty much rounds out the tooling I need for blogging with <a href="https://franklinjl.org/">Franklin.jl</a>. Feedback and PRs are of course welcome, but I intend to keep this package very basic.</p>
-<p>
-<div class="source_footer">
- This page was generated using <a href="https://github.com/fredrikekre/Literate.jl">Literate.jl</a>.<br />Download <a href="markdown-tables_source.tar">the source, project, and manifest</a>. 
-</div>
-</p>
- ]]>
-  </content:encoded>
-    
-  <pubDate>Wed, 22 Feb 2023 00:00:00 +0000</pubDate>  
+  <pubDate>Tue, 28 Jan 2025 00:00:00 +0000</pubDate>  
   
   
   <atom:author>
@@ -258,7 +258,7 @@ a, b</code></pre>
  ]]>
   </content:encoded>
     
-  <pubDate>Wed, 22 Feb 2023 00:00:00 +0000</pubDate>  
+  <pubDate>Tue, 28 Jan 2025 00:00:00 +0000</pubDate>  
   
   
   <atom:author>
@@ -271,8 +271,8 @@ a, b</code></pre>
   <title>
     <![CDATA[  Migration from Hugo to Franklin.jl  ]]>
   </title>
-  <link>  </link>
-  <guid>  </guid>
+  <link> https://tamaspapp.eu/pages/blog/2022/09-13-migration/index.html </link>
+  <guid> https://tamaspapp.eu/pages/blog/2022/09-13-migration/index.html </guid>
   <description>
     <![CDATA[  .  ]]>
   </description>  
@@ -284,7 +284,69 @@ a, b</code></pre>
  ]]>
   </content:encoded>
     
-  <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>  
+  <pubDate>Tue, 28 Jan 2025 00:00:00 +0000</pubDate>  
+  
+  
+  <atom:author>
+    <atom:name>Tamás K. Papp</atom:name>
+  </atom:author>
+        
+</item>
+
+<item>
+  <title>
+    <![CDATA[  My farewell to <code>@unpack</code>  ]]>
+  </title>
+  <link> https://tamaspapp.eu/pages/blog/2025/farewell-to-unpack/index.html </link>
+  <guid> https://tamaspapp.eu/pages/blog/2025/farewell-to-unpack/index.html </guid>
+  <description>
+    <![CDATA[  .  ]]>
+  </description>  
+  
+  <content:encoded>
+    <![CDATA[  
+<p>First, a bit of Julia history. When <a href="https://github.com/mauro3/Parameters.jl/">Parameters.jl</a> introduced the <code>@unpack</code> macro in 2015, it scratched an imporant itch for Julia users at the time, especially those coming from &#40;Common&#41; Lisp who were used to <a href="https://novaspec.org/cl/f_with-slots"><code>cl:with-slots</code></a> and similar macros. Given any object with properties, say <code>foo</code> and <code>bar</code>, one could bring them into scope with</p>
+<pre><code class="language-julia">@unpack foo, bar &#61; x</code></pre>
+<p>instead of a clumsy</p>
+<pre><code class="language-julia">foo &#61; x.foo
+bar &#61; x.bar</code></pre>
+<p>The functionality was so useful that it was later &#40;around 2019&#41; factored out into its own tiny package, <a href="https://github.com/mauro3/UnPack.jl">UnPack.jl</a>. </p>
+<p>Of course the Julia developers recognized how great this feature was, and Julia 1.7 &#40;in 2021&#41; brought us the property destructuring syntax</p>
+<pre><code class="language-julia">&#40;; foo, bar&#41; &#61; x</code></pre>
+<p>But since 1.7 was not an LTS, many packages did not require that version and kept relying on <code>@unpack</code>. In 2023, <a href="https://github.com/devmotion/SimpleUnPack.jl &quot;SimpleUnPack.jl&quot;">SimpleUnPack.jl</a> was written as a drop-in replacement for the most common use case while being easier on the compiler.</p>
+<p>Since Julia 1.10 is an LTS,  I am gradually removing <code>@unpack</code> from my packages whenever I happen to refactor them. This is, strictly speaking, not necessary &#40;it would just work forever&#41;, but I like to simplify code when I happen to refactor it for some other reason. I am taking this opportunity to reflect on how useful it was.</p>
+<p>There are quite a few lessons there about software development in general, and specifically for Julia:</p>
+<ol>
+<li><p>Macros are amazingly powerful. No wonder that Lisp users consider them a killer feature, they can extend the language with very useful syntax at essentially zero runtime and negligible compile time cost. It was a great decision for Julia to include them.</p>
+</li>
+<li><p>The best way to extend a language with new features is to first implement them as a package. This allows experimentation and quick turnaround, leading to a polished end product that the language can include.</p>
+</li>
+<li><p>Once your Julia code works, it will keep working for a long time, potentially forever in 1.x land.  UnPack.jl <a href="https://juliahub.com/ui/Packages/General/UnPack">still has 200 dependents</a>. This allows developers to make upgrades at their own pace, prioritizing more urgent issues.</p>
+</li>
+</ol>
+<h3 id="bonus_feature">Bonus feature</h3>
+<p>This little Emacs snippet does the conversion from <code>@unpack ...</code> to <code>&#40;; ...&#41;</code>, also working on multiline code etc, either on standalone files or whole packages opened in <a href="https://www.gnu.org/software/emacs/manual/html_node/emacs/Dired.html"><code>dired</code></a>.</p>
+<pre><code class="language-emacs-lis">&#40;defun my-julia-remove-unpack &#40;&#41;
+  &quot;Go from &#96;@unpack&#39; to &#96;&#40;; ...&#41;&#96; destructuring syntax. Works in dired mode and buffer.&quot;
+  &#40;interactive&#41;
+  &#40;let* &#40;&#40;from &#40;rx &quot;@unpack&quot;
+                   &#40;one-or-more space&#41;
+                   &#40;or &#40;seq &quot;&#40;&quot; &#40;group-n 1 &#40;one-or-more &#40;not &quot;@&quot;&#41;&#41;&#41; &quot;&#41;&quot;&#41;
+                       &#40;group-n 1 &#40;one-or-more &#40;not &#40;or ?@ ?\n&#41;&#41;&#41;&#41;
+                       &#41;
+                   &#40;one-or-more space&#41;
+                   &quot;&#61;&quot;&#41;&#41;
+         &#40;to &quot;&#40;; \\1&#41; &#61;&quot;&#41;&#41;
+    &#40;cond
+     &#40;&#40;eq major-mode &#39;julia-mode&#41; &#40;query-replace-regexp from to&#41;&#41;
+     &#40;&#40;eq major-mode &#39;dired-mode&#41; &#40;dired-do-query-replace-regexp from to&#41;&#41;
+     &#40;t &#40;message &quot;Don&#39;t know what to do with mode &#37;s&quot; major-mode&#41;&#41;&#41;&#41;&#41;</code></pre>
+<h3 id="ps">P.S.</h3>
+<p>&#40;I am reviving my blog after a long break.&#41;</p>
+ ]]>
+  </content:encoded>
+    
+  <pubDate>Tue, 28 Jan 2025 00:00:00 +0000</pubDate>  
   
   
   <atom:author>

@@ -1,0 +1,60 @@
+<!doctype html> <html lang=en > <meta charset=UTF-8 > <meta name=viewport  content="width=device-width, initial-scale=1"> <link rel=stylesheet  href="/libs/highlight/github.min.css"> <link href="/css/style.css" rel=stylesheet > <script src="/libs/vela/jquery.min.js"></script> <link rel=icon  href="/assets/favicon.png"> <title>Tamás K. Papp &mdash; My farewell to <code>@unpack</code></title> <div id = "navbar"> <a href="/">About</a> <a href="/pages/research">Research</a> <a href="/pages/blog">Blog</a> <a href="/pages/teaching">Teaching</a> <a href="https://github.com/tpapp/">Github</a> <div class=dropdown > <a class=dropdown-button >(tags)</a> <div class=dropdown-content > <p class=dropdown-header >site tags</p> <a href="/tag/julia">julia</a> <a href="/tag/announcement">announcement</a> <a href="/tag/numerical">numerical</a> <a href="/tag/packages">packages</a> <a href="/tag/spectralkitjl">SpectralKit.jl</a> <a href="/tag/transformvariablesjl">TransformVariables.jl</a> <a href="/tag/package">package</a> <a href="/tag/emacs">emacs</a> <a href="/tag/markdown">markdown</a> <a href="/tag/franklin">franklin</a> </div> </div> <a href="/feed.xml" type="application/rss+xml" target=_blank ><img class=feedicon  src="/assets/img/feed_icon.svg" alt="Atom feed (blog)" title="Atom feed (blog)"></a> </div> <div class=main-content > <h1 class=title >My farewell to <code>@unpack</code></h1> <div class=tags > <span class=date >2025-01-28</date></span> <a href="/tag/julia">julia</a> <a href="/tag/emacs">emacs</a> <a href="/tag/packages">packages</a> </div> <div class=franklin-content > <p>First, a bit of Julia history. When <a href="https://github.com/mauro3/Parameters.jl/">Parameters.jl</a> introduced the <code>@unpack</code> macro in 2015, it scratched an imporant itch for Julia users at the time, especially those coming from &#40;Common&#41; Lisp who were used to <a href="https://novaspec.org/cl/f_with-slots"><code>cl:with-slots</code></a> and similar macros. Given any object with properties, say <code>foo</code> and <code>bar</code>, one could bring them into scope with</p> <pre><code class=language-julia >@unpack foo, bar &#61; x</code></pre>
+<p>instead of a clumsy</p>
+<pre><code class=language-julia >foo &#61; x.foo
+bar &#61; x.bar</code></pre>
+<p>The functionality was so useful that it was later &#40;around 2019&#41; factored out into its own tiny package, <a href="https://github.com/mauro3/UnPack.jl">UnPack.jl</a>. </p>
+<p>Of course the Julia developers recognized how great this feature was, and Julia 1.7 &#40;in 2021&#41; brought us the property destructuring syntax</p>
+<pre><code class=language-julia >&#40;; foo, bar&#41; &#61; x</code></pre>
+<p>But since 1.7 was not an LTS, many packages did not require that version and kept relying on <code>@unpack</code>. In 2023, <a href="https://github.com/devmotion/SimpleUnPack.jl &quot;SimpleUnPack.jl&quot;">SimpleUnPack.jl</a> was written as a drop-in replacement for the most common use case while being easier on the compiler.</p>
+<p>Since Julia 1.10 is an LTS,  I am gradually removing <code>@unpack</code> from my packages whenever I happen to refactor them. This is, strictly speaking, not necessary &#40;it would just work forever&#41;, but I like to simplify code when I happen to refactor it for some other reason. I am taking this opportunity to reflect on how useful it was.</p>
+<p>There are quite a few lessons there about software development in general, and specifically for Julia:</p>
+<ol>
+<li><p>Macros are amazingly powerful. No wonder that Lisp users consider them a killer feature, they can extend the language with very useful syntax at essentially zero runtime and negligible compile time cost. It was a great decision for Julia to include them.</p>
+
+<li><p>The best way to extend a language with new features is to first implement them as a package. This allows experimentation and quick turnaround, leading to a polished end product that the language can include.</p>
+
+<li><p>Once your Julia code works, it will keep working for a long time, potentially forever in 1.x land.  UnPack.jl <a href="https://juliahub.com/ui/Packages/General/UnPack">still has 200 dependents</a>. This allows developers to make upgrades at their own pace, prioritizing more urgent issues.</p>
+
+</ol>
+<h3 id=bonus_feature ><a href="#bonus_feature" class=header-anchor >Bonus feature</a></h3>
+<p>This little Emacs snippet does the conversion from <code>@unpack ...</code> to <code>&#40;; ...&#41;</code>, also working on multiline code etc, either on standalone files or whole packages opened in <a href="https://www.gnu.org/software/emacs/manual/html_node/emacs/Dired.html"><code>dired</code></a>.</p>
+<pre><code class=language-emacs-lis >&#40;defun my-julia-remove-unpack &#40;&#41;
+  &quot;Go from &#96;@unpack&#39; to &#96;&#40;; ...&#41;&#96; destructuring syntax. Works in dired mode and buffer.&quot;
+  &#40;interactive&#41;
+  &#40;let* &#40;&#40;from &#40;rx &quot;@unpack&quot;
+                   &#40;one-or-more space&#41;
+                   &#40;or &#40;seq &quot;&#40;&quot; &#40;group-n 1 &#40;one-or-more &#40;not &quot;@&quot;&#41;&#41;&#41; &quot;&#41;&quot;&#41;
+                       &#40;group-n 1 &#40;one-or-more &#40;not &#40;or ?@ ?\n&#41;&#41;&#41;&#41;
+                       &#41;
+                   &#40;one-or-more space&#41;
+                   &quot;&#61;&quot;&#41;&#41;
+         &#40;to &quot;&#40;; \\1&#41; &#61;&quot;&#41;&#41;
+    &#40;cond
+     &#40;&#40;eq major-mode &#39;julia-mode&#41; &#40;query-replace-regexp from to&#41;&#41;
+     &#40;&#40;eq major-mode &#39;dired-mode&#41; &#40;dired-do-query-replace-regexp from to&#41;&#41;
+     &#40;t &#40;message &quot;Don&#39;t know what to do with mode &#37;s&quot; major-mode&#41;&#41;&#41;&#41;&#41;</code></pre>
+<h3 id=ps ><a href="#ps" class=header-anchor >P.S.</a></h3>
+<p>&#40;I am reviving my blog after a long break.&#41;</p>
+
+<script src="https://utteranc.es/client.js" repo="tpapp/tpapp.github.io-comments"
+        issue-term=pathname  label=comment  theme=github-light  crossorigin=anonymous 
+        async>
+</script>
+
+
+
+<div class=page-foot >
+  <div class=copyright >
+    &copy; Tamás K. Papp. Last modified: January 28, 2025.
+    Website built with <a href="https://github.com/tlienart/Franklin.jl">Franklin.jl</a> and the <a href="https://julialang.org">Julia programming language</a>.
+  </div>
+</div>
+</div></div>
+
+  </main> 
+  <script src="/libs/vela/metisMenu.min.js"></script>
+  <script src="/libs/vela/slideout.min.js"></script>
+  
+  
+    <script src="/libs/highlight/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();hljs.configure({tabReplace: '    '});</script>

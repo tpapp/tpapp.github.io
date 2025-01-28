@@ -57,7 +57,7 @@ function hfun_pages_in_folders_by_date(folders)
             print(io, """
                     <li class="post-item">
                       <a href=\"$(item.url)\"><span class="post-title">$(item.title)</span></a>
-                      &nbsp;&mdash;&nbsp<span class="post-day">$(Dates.format(item.date, "Y u d"))</span>
+                      &nbsp;<span class="post-day">$(Dates.format(item.date, "Y u d"))</span>
                     </li>
                 """)
     end

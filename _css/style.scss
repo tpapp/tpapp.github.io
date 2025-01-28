@@ -376,3 +376,13 @@ small, .font_small {font-size: 0.833em;}
         }
     }
 }
+
+.post-title {
+    float: left;
+}
+.post-day {
+    float: right;
+}
+li.post-item { list-style-type: none; }
+li.post-item:nth-child(odd) { background: $darkfg; }
+li.post-item:nth-child(even) { background: $srcfg; }

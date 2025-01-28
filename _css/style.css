@@ -57,7 +57,6 @@ small, .font_small {
       color: #fff;
       text-align: left;
       padding: 0 0.5em; } }
-
 #navbar {
   position: sticky;
   top: 0;
@@ -276,4 +275,17 @@ small, .font_small {
     .main-content .tags a:hover {
       color: #4682b4; }
 
-/*# sourceMappingURL=style.css.map */
+.post-title {
+  float: left; }
+
+.post-day {
+  float: right; }
+
+li.post-item {
+  list-style-type: none; }
+
+li.post-item:nth-child(odd) {
+  background: #eee; }
+
+li.post-item:nth-child(even) {
+  background: #fff; }
